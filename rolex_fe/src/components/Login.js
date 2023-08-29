@@ -1,86 +1,64 @@
 import React from "react";
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBRow,
-  MDBCol,
-  MDBIcon,
-  MDBInput,
-} from "mdb-react-ui-kit";
+import { Link } from "react-router-dom";
+import "../login-register.css";
 export default function Login() {
   return (
-    <MDBContainer className="login_page">
-      <MDBCard>
-        <MDBRow className="g-0">
-          <MDBCol md="6">
-            <MDBCardImage
-              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
-              alt="login form"
-              className="rounded-start w-100"
-            />
-          </MDBCol>
-
-          <MDBCol md="6">
-            <MDBCardBody className="d-flex flex-column">
-              <div className="d-flex flex-row mt-2">
-                <MDBIcon
-                  fas
-                  icon="cubes fa-3x me-3"
-                  style={{ color: "#ff6219" }}
-                />
-                <span className="h1 fw-bold mb-0">Logo</span>
-              </div>
-
-              <h5
-                className="fw-normal my-4 pb-3"
-                style={{ letterSpacing: "1px" }}
-              >
-                Sign into your account
-              </h5>
-
-              <MDBInput
-                wrapperClass="mb-4"
-                label="Email address"
-                id="formControlLg"
-                type="email"
-                size="lg"
-              />
-              <MDBInput
-                wrapperClass="mb-4"
-                label="Password"
-                id="formControlLg"
-                type="password"
-                size="lg"
-              />
-
-              <MDBBtn className="mb-4 px-5" color="dark" size="lg">
-                Login
-              </MDBBtn>
-              <a className="small text-muted" href="#!">
-                Forgot password?
-              </a>
-              <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
-                Don't have an account?{" "}
-                <a href="#!" style={{ color: "#393f81" }}>
-                  Register here
-                </a>
-              </p>
-
-              <div className="d-flex flex-row justify-content-start">
-                <a href="#!" className="small text-muted me-1">
-                  Terms of use.
-                </a>
-                <a href="#!" className="small text-muted">
-                  Privacy policy
-                </a>
-              </div>
-            </MDBCardBody>
-          </MDBCol>
-        </MDBRow>
-      </MDBCard>
-    </MDBContainer>
+    <div className="main">
+      <form action="" method="POST" className="form" id="form-2">
+        <h3 className="heading">Đăng nhập</h3>
+        <p className="desc">
+          Cảm ơn bạn luôn đồng hành cùng chúng tôi ❤️
+        </p>
+        <div className="spacer" />
+        <div className="form-group">
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="text"
+            placeholder="VD: email@domain.com"
+            className="form-control"
+          />
+          <span className="form-message" />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password" className="form-label">
+            Mật khẩu
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Nhập mật khẩu"
+            className="form-control"
+          />
+          <span className="form-message" />
+        </div>
+        <button className="form-submit">Đăng nhập</button>
+        <div className="confirm-login">
+          <Link to="/forgot-password" className="link">
+            Quên mật khẩu ?
+          </Link>
+        </div>
+        <div className="confirm-register">
+          <span style={{ marginRight: "5px" }}>Bạn chưa có tài khoản?</span>
+          <Link to="/rolex-world/register" className="link">
+            Đăng kí thành viên mới
+          </Link>
+        </div>
+        <div className="social">
+          <div className="social-facebook">
+            <img src=""></img>
+            <div> Đăng nhập bằng Facbook</div>
+          </div>
+          <div className="social-google">
+            <img src=""></img>
+            <div>Đăng nhập bằng Google</div>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 }

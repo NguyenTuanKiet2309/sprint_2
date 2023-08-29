@@ -8,19 +8,23 @@ import HomePage from "./components/Homepage";
 import Login from "./components/Login";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import About from "./components/About";
+import DetailsProduct from "./components/DetailsProduct";
+import ShoppingCart from "./components/ShoppingCart";
+import Register from "./components/Register";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Header/>
+      <Header />
       <Routes>
         <Route path="/rolex-world" element={<HomePage />}></Route>
         <Route path="/rolex-world/login" element={<Login />}></Route>
-        <Route path="/rolex-world/about" element={<About />}></Route>
+        <Route path="/rolex-world/details" element={<DetailsProduct />}></Route>
+        <Route path="/rolex-world/shopping-cart" element={<ShoppingCart />}></Route>
+        <Route path="/rolex-world/register" element={<Register />}></Route>
       </Routes>
-      <Footer/>
+      <Footer />
     </BrowserRouter>
   </React.StrictMode>
 );

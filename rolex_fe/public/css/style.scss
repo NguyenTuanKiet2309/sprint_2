@@ -51,7 +51,8 @@ body {
 }
 
 .layout_padding-bottom {
-  padding-bottom: 75px;
+  padding-bottom: 75px ;
+  padding-top: 75px;
 }
 
 .custom_heading {
@@ -61,7 +62,6 @@ body {
 /*header section*/
 .hero_area {
   height: 98vh;
-  background-color: #b5caee;
 }
 
 .sub_page {
@@ -231,13 +231,13 @@ a:focus {
   background-repeat: no-repeat;
   background-size: 10px;
   background-position: center;
-  background-color: #f2d8b9;
+  border: #000;
   transform: translateY(-50%);
 }
 
 .slider_section .carousel-control-prev:hover,
 .slider_section .carousel-control-next:hover {
-  background-color: #ffffff;
+  // background-color: #ffffff;
 }
 
 .slider_section .carousel-control-prev {
@@ -498,13 +498,13 @@ a:focus {
     background-repeat: no-repeat;
     background-size: 10px;
     background-position: center;
-    background-color: #c1dcf9;
+
     transform: translateY(-50%);
   }
 
   .carousel-control-prev:hover,
   .carousel-control-next:hover {
-    background-color: #f2d8b9;
+
   }
 
   .carousel-control-prev {

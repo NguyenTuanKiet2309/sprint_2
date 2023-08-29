@@ -4,11 +4,10 @@ export default function HomePage() {
   return (
     <div>
       <section className=" slider_section position-relative">
-        <div
+        {/* <div
           id="carouselExampleControls"
           className="carousel slide"
-          data-ride="carousel"
-        >
+          data-ride="carousel">
           <div className="carousel-inner">
             <div className="carousel-item active">
               <div className="slider_item-box">
@@ -18,7 +17,11 @@ export default function HomePage() {
                       <div className="col-md-5">
                         <div className="slider_img-box">
                           <div>
-                            <img  src="https://wpbingosite.com/wordpress/wrish/wp-content/uploads/2021/10/slider3.jpg" alt="" className />
+                            <img
+                              src="https://wpbingosite.com/wordpress/wrish/wp-content/uploads/2021/10/slider3.jpg"
+                              alt=""
+                              className
+                            />
                           </div>
                         </div>
                       </div>
@@ -29,16 +32,15 @@ export default function HomePage() {
                         >
                           <div>
                             <h2>TIMELESS & ELEGANT</h2>
-                            <h3>
-                        THE CLASSICS
-                            </h3>
+                            <h3>THE CLASSICS</h3>
                             <div>
-                              <span>Complete your everyday look with a classic leather strap watch.</span>
+                              <span>
+                                Complete your everyday look with a classic
+                                leather strap watch.
+                              </span>
                             </div>
                             <div className="d-flex">
-                            <a className="slider-btn1 mr-3">
-                                SHOP NOW
-                              </a>
+                              <a className="slider-btn1 mr-3">SHOP NOW</a>
                             </div>
                           </div>
                         </div>
@@ -60,7 +62,6 @@ export default function HomePage() {
                               src="https://wpbingosite.com/wordpress/wrish/wp-content/uploads/2021/10/slider2.jpg"
                               alt=""
                               className
-                           
                             />
                           </div>
                         </div>
@@ -69,17 +70,15 @@ export default function HomePage() {
                         <div className="slider_item-detail">
                           <div>
                             <h2>TIMELESS & ELEGANT</h2>
-                            <h3>
-                            BEST SELLER
-                            </h3>
+                            <h3>BEST SELLER</h3>
                             <div>
-                              <span>Complete your everyday look with a classic leather strap watch.</span>
+                              <span>
+                                Complete your everyday look with a classic
+                                leather strap watch.
+                              </span>
                             </div>
                             <div className="d-flex">
-                              <a className="slider-btn1 mr-3">
-                                SHOP NOW
-                              </a>
-                          
+                              <a className="slider-btn1 mr-3">SHOP NOW</a>
                             </div>
                           </div>
                         </div>
@@ -97,7 +96,11 @@ export default function HomePage() {
                       <div className="col-md-5">
                         <div className="slider_img-box">
                           <div>
-                            <img src="https://wpbingosite.com/wordpress/wrish/wp-content/uploads/2021/10/slider1.jpg" alt="" className />
+                            <img
+                              src="https://wpbingosite.com/wordpress/wrish/wp-content/uploads/2021/10/slider1.jpg"
+                              alt=""
+                              className
+                            />
                           </div>
                         </div>
                       </div>
@@ -105,16 +108,15 @@ export default function HomePage() {
                         <div className="slider_item-detail">
                           <div>
                             <h2 className>TIMELESS & ELEGANT</h2>
-                            <h3>
-                      THE ARRIVALS
-                            </h3>
+                            <h3>THE ARRIVALS</h3>
                             <div>
-                              <span>Complete your everyday look with a classic leather strap watch.</span>
+                              <span>
+                                Complete your everyday look with a classic
+                                leather strap watch.
+                              </span>
                             </div>
                             <div className="d-flex">
-                            <a className="slider-btn1 mr-3">
-                                SHOP NOW
-                              </a>
+                              <a className="slider-btn1 mr-3">SHOP NOW</a>
                             </div>
                           </div>
                         </div>
@@ -143,37 +145,98 @@ export default function HomePage() {
               <span className="sr-only">Next</span>
             </a>
           </div>
+        </div> */}
+        <div id="mycarousel" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#mycarousel" data-slide-to="1" class=""></li>
+            <li data-target="#mycarousel" data-slide-to="2" class=""></li>
+          </ol>
+
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                class="d-block w-100"
+                src="https://wpbingosite.com/wordpress/wrish/wp-content/uploads/2021/10/slider3.jpg"
+              />
+
+              <div
+                class="carousel-caption d-none d-md-block"
+                style={{ color: "#fff" }}
+              >
+                <h2>VƯỢT THỜI GIAN & THANH LỊCH</h2>
+                <h3>CỔ ĐIỂN</h3>
+                <span>
+                  Hoàn thiện diện mạo hàng ngày của bạn với chiếc đồng hồ dây da
+                  cổ điển.
+                </span>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <img
+                class="d-block w-100"
+                src="https://wpbingosite.com/wordpress/wrish/wp-content/uploads/2021/10/slider1.jpg"
+              />
+              <div
+                class="carousel-caption d-none d-md-block"
+                style={{ color: "#fff" }}
+              >
+                <h2>VƯỢT THỜI GIAN & THANH LỊCH</h2>
+                <h3>SẢN PHẢM BÁN CHẠY</h3>
+                <span>Một chiếc đồng hồ Rolex khẳng định địa vị xã hội </span>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <img
+                class="d-block w-100"
+                src="https://wpbingosite.com/wordpress/wrish/wp-content/uploads/2021/10/slider2.jpg"
+              />
+
+              <div
+                class="carousel-caption d-none d-md-block"
+                style={{ color: "#fff" }}
+              >
+                <h2>VƯỢT THỜI GIAN & THANH LỊCH</h2>
+                <h3>BEST SELLER</h3>
+                <span>Một chiếc vương miện cho mỗi thành tựu</span>
+              </div>
+            </div>
+          </div>
+
+          <a
+            class="carousel-control-prev"
+            href="#mycarousel"
+            role="button"
+            data-slide="prev"
+          >
+            {" "}
+            <span
+              class="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>{" "}
+            <span class="sr-only">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#mycarousel"
+            role="button"
+            data-slide="next"
+          >
+            {" "}
+            <span
+              class="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>{" "}
+            <span class="sr-only">Next</span>{" "}
+          </a>
         </div>
       </section>
       {/* end slider section */}
       <div className="bg">
         {/* about section */}
-        <section className="about_section layout_padding">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-md-5 offset-md-2">
-                <div className="about_detail-box" style={{ color: "#fff" }}>
-                  <h3 className="custom_heading ">About our watch</h3>
-                  <p className>
-                    It is a long established fact that a reader will be
-                    distracted by the readable content of a page when looking at
-                    its layout. The point of using Lorem Ipsum is that it has a
-                    more-or-less normal distribution of letters, as opposed to
-                    using 'Content here, content here', making it
-                  </p>
-                  <div>
-                    <a href>Read More</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="about_img-box">
-                  <img src="images/about.png" alt="" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+
         {/* end about section */}
         {/* brand section */}
         <section
@@ -183,20 +246,19 @@ export default function HomePage() {
           <div className="container">
             <div className="brand_heading" style={{ color: "black" }}>
               <h3 className="custom_heading" style={{ color: "black" }}>
-                OFFICIAL ROLEX RETAILER IN VIETNAM
+                ĐẠI LÝ ROLEX CHÍNH THỨC TẠI VIỆT NAM
               </h3>
               <p className="font-weight-bold">
-                Rolex watches are crafted from the finest raw materials and
-                assembled with scrupulous attention to detail. Every component
-                is designed, developed and produced to the most exacting
-                standards.
+                Đồng hồ Rolex được chế tạo từ những nguyên liệu thô tốt nhất và
+                được lắp ráp tỉ mỉ đến từng chi tiết. Mỗi thành phần được thiết
+                kế, phát triển và sản xuất với độ chính xác cao nhất tiêu chuẩn.
               </p>
             </div>
           </div>
           <div className="container-fluid brand_item-container">
             <div className="brand_item-box">
               <div className="brand_img-box  item-1">
-                <a href>View More</a>
+                <a style={{ color: "#fff" }}>Xem Thêm</a>
               </div>
               <div className="brand_detail-box">
                 <h6 className>Rolex DateJust</h6>
@@ -204,7 +266,7 @@ export default function HomePage() {
             </div>
             <div className="brand_item-box">
               <div className="brand_img-box  item-2">
-                <a href>Rolex GMT-Master II</a>
+                <a style={{ color: "#fff" }}>Xem Thêm</a>{" "}
               </div>
               <div className="brand_detail-box">
                 <h6 className>Rolex Day-Date</h6>
@@ -212,7 +274,7 @@ export default function HomePage() {
             </div>
             <div className="brand_item-box">
               <div className="brand_img-box  item-3">
-                <a href>View More</a>
+                <a style={{ color: "#fff" }}>Xem Thêm</a>{" "}
               </div>
               <div className="brand_detail-box">
                 <h6 className>Rolex CosmoGrahp Daytona</h6>
@@ -220,7 +282,7 @@ export default function HomePage() {
             </div>
             <div className="brand_item-box">
               <div className="brand_img-box  item-4">
-                <a href>View More</a>
+                <a style={{ color: "#fff" }}>Xem Thêm</a>
               </div>
               <div className="brand_detail-box">
                 <h6 className>Rolex 1908</h6>
@@ -228,7 +290,7 @@ export default function HomePage() {
             </div>
             <div className="brand_item-box">
               <div className="brand_img-box  item-5">
-                <a href>View More</a>
+                <a style={{ color: "#fff" }}>Xem Thêm</a>
               </div>
               <div className="brand_detail-box">
                 <h6 className>Rolex Submariner</h6>
@@ -239,14 +301,14 @@ export default function HomePage() {
         {/* end brand section */}
         {/* why section */}
         <section
-          className="why_section layout_padding"
+          className="why_section layout_padding container-fluid"
           style={{ backgroundColor: "#f8f8f8" }}
         >
           <div className="container">
-            <h3 className="custom_heading">Why choose Us</h3>
+            <h3 className="custom_heading">TẠI SAO CHỌN CHÚNG TÔI</h3>
             <p className="font-weight-bold">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page
+              Chúng tôi cam kết mang đến có quý khách hàng một trải nghiệm mua
+              hàng tốt nhất
             </p>
           </div>
           <div className="container">
@@ -266,11 +328,8 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <div className="detail_box">
-                  <h5>Fast Delivery</h5>
-                  <p>
-                    variations of passages of Lorem Ipsum available, but the
-                    majority have suffered
-                  </p>
+                  <h5>Chuyển phát nhanh</h5>
+                  <p>Giao hàng nhanh, đóng gói cẩn thẩn</p>
                 </div>
               </div>
               <div className="col-md-6">
@@ -294,7 +353,7 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <div className="detail_box">
-                  <h5>Secure payments </h5>
+                  <h5>Thanh toán bảo mật</h5>
                   <p>
                     variations of passages of Lorem Ipsum available, but the
                     majority have suffered
@@ -335,7 +394,7 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <div className="detail_box">
-                  <h5>Top-notch support</h5>
+                  <h5>Hỗ trợ hàng đầu</h5>
                   <p>
                     variations of passages of Lorem Ipsum available, but the
                     majority have suffered
@@ -376,11 +435,8 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <div className="detail_box">
-                  <h5>180 Days Return</h5>
-                  <p>
-                    variations of passages of Lorem Ipsum available, but the
-                    majority have suffered
-                  </p>
+                  <h5>Hoàn trả 180 ngày</h5>
+                  <p>1 đổi 1 trong 180 ngày với sản phẩm lỗi</p>
                 </div>
               </div>
             </div>
@@ -391,13 +447,13 @@ export default function HomePage() {
       {/* client section */}
       <section className="client_section layout_padding-bottom">
         <div className="container">
-          <h3 className="custom_heading">Testimonial</h3>
+          <h3 className="custom_heading">Đánh giá của khách hàng</h3>
           <p className="font-weight-bold">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page
+            RolexWorld tự hào là website có lượng đánh giá nhiều nhất tại Việt
+            Nam
           </p>
         </div>
-        <div className="container" />
+        <div className="container-fluid" />
         <div
           id="carouselExample2Controls"
           className="carousel slide"
@@ -413,18 +469,16 @@ export default function HomePage() {
                         <img src="images/client.jpg" alt="" />
                       </div>
                       <div className="name_box">
-                        <h5>Sandy Den</h5>
-                        <h6>Many Variations</h6>
+                        <h5>Công Nam</h5>
+                        <h6>Nghệ An</h6>
                       </div>
                     </div>
                     <div className="detail_text">
                       <p>
-                        There are many variations of passages of Lorem Ipsum
-                        available, but the majority have suffered alteration in
-                        some form, by injected humour, or randomised words which
-                        don't look even slightly believable. If you are going to
-                        use a passage of Lorem Ipsum, you need to beThere are
-                        many variations of passages
+                        Đang dùng em này để đi chơi, cực kỳ hài lòng, chất lượng
+                        hơn hẳn nếu so với đồng hồ máy Nhật nhé, hàng của shop
+                        bao chính hãng, anh em cứ mạnh dạn order nhé ^^ nhân
+                        viên shop cũng rất niềm nở, nhiệt tình 👍👍
                       </p>
                     </div>
                   </div>
@@ -440,18 +494,16 @@ export default function HomePage() {
                         <img src="images/client.jpg" alt="" />
                       </div>
                       <div className="name_box">
-                        <h5>Sandy Den</h5>
-                        <h6>Many Variations</h6>
+                        <h5>Võ Văn Thái</h5>
+                        <h6>Quảng Nam</h6>
                       </div>
                     </div>
                     <div className="detail_text">
                       <p>
-                        There are many variations of passages of Lorem Ipsum
-                        available, but the majority have suffered alteration in
-                        some form, by injected humour, or randomised words which
-                        don't look even slightly believable. If you are going to
-                        use a passage of Lorem Ipsum, you need to beThere are
-                        many variations of passages
+                        Mình đặt hàng ngày 5/5/2023 Hôm ni 9/5/2023 em nó đã cập
+                        bến . Cho shop 5 điểm . Rất uy tín… Giờ giấc chính xác
+                        của đồng hồ thế nào thì chưa biết, mình mới đeo có mấy
+                        tiếng đồng hồ, thời gian tới sẽ đánh giá cụ thể
                       </p>
                     </div>
                   </div>
@@ -467,18 +519,16 @@ export default function HomePage() {
                         <img src="images/client.jpg" alt="" />
                       </div>
                       <div className="name_box">
-                        <h5>Sandy Den</h5>
-                        <h6>Many Variations</h6>
+                        <h5>Lê Văn Hưng</h5>
+                        <h6>Đà Nẵng</h6>
                       </div>
                     </div>
                     <div className="detail_text">
                       <p>
-                        There are many variations of passages of Lorem Ipsum
-                        available, but the majority have suffered alteration in
-                        some form, by injected humour, or randomised words which
-                        don't look even slightly believable. If you are going to
-                        use a passage of Lorem Ipsum, you need to beThere are
-                        many variations of passages
+                        Đồng hồ rất đẹp, giá theo mình thấy là cạnh tranh so với
+                        hầu hết các shop, có bảo hành đầy đủ.Mọi người nên tham
+                        khảo mẫu trước khi ghé shop để tiết kiệm thời gian chờ
+                        hàng
                       </p>
                     </div>
                   </div>
@@ -507,27 +557,27 @@ export default function HomePage() {
       {/* end client section */}
       {/* contact section */}
       <section className="contact_section layout_padding">
-        <h2 className="custom_heading text-center">NOW CONTACT US</h2>
+        <h2 className="custom_heading text-center">LIÊN HỆ VỚI CHÚNG TÔI</h2>
         <div className="container mt-5 pt-5">
           <form action>
             <div>
-              <input type="text" placeholder="NAME" />
+              <input type="text" placeholder="HỌ VÀ TÊN" />
             </div>
             <div>
               <input type="email" placeholder="EMAIL" />
             </div>
             <div>
-              <input type="text" placeholder="PHONE NUMBER" />
+              <input type="text" placeholder="SỐ ĐIỆN THOẠI" />
             </div>
             <div>
               <input
                 type="text"
                 className="message-box"
-                placeholder="MESSAGE"
+                placeholder="TIN NHẮN"
               />
             </div>
             <div className="d-flex justify-content-center mt-5 pt-5">
-              <button>SEND</button>
+              <button>GỬI</button>
             </div>
           </form>
         </div>
