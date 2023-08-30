@@ -6,7 +6,7 @@ export default function Header() {
       <header className="header_section">
         <div className="container">
           <nav className="navbar navbar-expand-lg custom_nav-container pt-3">
-            <NavLink className="navbar-brand" to="/rolex-world">
+            <NavLink className="navbar-brand" to="/rolex-world" style={{position:"relative",right:"70px"}}>
               <a aria-label="Quay về trang chủ" href="/vi">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -355,17 +355,24 @@ export default function Header() {
                       Trang Chủ
                     </NavLink>
                   </li>
+                
+                  <li className="nav-item">
+                    <a className="nav-link" href="watch.html">
+                      {" "}
+                      Đồng Hồ Nam{" "}
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="watch.html">
+                      {" "}
+                      Đồng Hồ Nữ{" "}
+                    </a>
+                  </li>
                   <li className="nav-item">
                     <NavLink to="/rolex-world/shopping-cart" className="nav-link">
                       {" "}
                       Giỏ Hàng
                     </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="watch.html">
-                      {" "}
-                      Sản Phẩm{" "}
-                    </a>
                   </li>
                   <li className="nav-item">
                     <NavLink className="nav-link" to={"/rolex-world/details"}>
@@ -387,16 +394,16 @@ export default function Header() {
                       className="nav-link"
                       href=""
                     >
-                      Đăng kí
+                      Đăng ký
                     </NavLink>
                   </li>
                 </ul>
-                <form className="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+                {/* <form className="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
                   <button
                     className="btn  my-2 my-sm-0 nav_search-btn"
                     type="submit"
                   />
-                </form>
+                </form> */}
               </div>
             </div>
           </nav>

@@ -147,10 +147,7 @@ a:focus {
 
 /*end header section*/
 /* slider section */
-.slider_section {
-  /* padding-top: 8%; */
-  height: 700px;
-}
+
 
 .slider_item-box {
   width: 100%;
@@ -299,7 +296,20 @@ a:focus {
 .brand_section h3 {
   color: #fcfcfc;
 }
+.product_details button{
+  background-color: #fff;
+  color: black;
+    padding: 12px 55px;
+    /* outline: none; */
+    border: none;
+    border: 1px solid black;
+    /* margin-right: 20px; */
+}
+.product_details button:hover {
+  color: #fff;
+  background-color: #145f3d;
 
+}
 .brand_section .brand_item-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -410,7 +420,20 @@ a:focus {
   color: #242425;
 }
 
+.brand_detail-box button{
+  background-color: #fff;
+  color: black;
+    padding: 12px 55px;
+    outline: none;
+    border: none;
+    border: 1px solid black;
+ 
+}
+.brand_detail-box button:hover {
+  color: #fff;
+  background-color: #145f3d;
 
+}
 
 .brand_detail-box h6 {
   text-transform: uppercase;
@@ -585,7 +608,7 @@ a:focus {
 
 .contact_section button:hover {
   color: #fff;
-  background-color: transparent;
+  background-color: #145f3d;
 }
 
 .info_section {

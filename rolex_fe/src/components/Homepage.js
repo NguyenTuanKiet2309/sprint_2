@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function HomePage() {
   return (
@@ -258,7 +258,7 @@ export default function HomePage() {
           <div className="container-fluid brand_item-container">
             <div className="brand_item-box">
               <div className="brand_img-box  item-1">
-                <a style={{ color: "#fff" }}>Xem Thêm</a>
+                <Link to={"/rolex-world/products"} style={{ color: "#fff" }}>Xem Thêm</Link>
               </div>
               <div className="brand_detail-box">
                 <h6 className>Rolex DateJust</h6>

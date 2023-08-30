@@ -16,7 +16,7 @@ export default function Register() {
               placeholder="VD: Nguyễn Hải"
               className="form-control"
             />
-            <span className="form-message" />
+          <span className="form-message" style={{color:"red"}}>Họ và tên không được chứa số và kí tự đặc biệt</span>
           </div>
           <div className="form-group">
             <label htmlFor="email" className="form-label">
@@ -29,7 +29,7 @@ export default function Register() {
               placeholder="VD: email@domain.com"
               className="form-control"
             />
-            <span className="form-message" />
+              <span className="form-message" style={{color:"red"}}>Email không hợp lệ</span>
           </div>
           <div className="form-group">
             <label htmlFor="password" className="form-label">

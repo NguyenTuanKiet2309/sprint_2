@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import DetailsProduct from "./components/DetailsProduct";
 import ShoppingCart from "./components/ShoppingCart";
 import Register from "./components/Register";
+import Product from "./components/Product";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,6 +24,7 @@ root.render(
         <Route path="/rolex-world/details" element={<DetailsProduct />}></Route>
         <Route path="/rolex-world/shopping-cart" element={<ShoppingCart />}></Route>
         <Route path="/rolex-world/register" element={<Register />}></Route>
+        <Route path="/rolex-world/products" element={<Product />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -21,7 +21,7 @@ export default function Login() {
             placeholder="VD: email@domain.com"
             className="form-control"
           />
-          <span className="form-message" />
+          <span className="form-message" style={{color:"red"}}>Email không hợp lệ</span>
         </div>
         <div className="form-group">
           <label htmlFor="password" className="form-label">

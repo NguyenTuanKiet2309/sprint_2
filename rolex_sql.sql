@@ -29,7 +29,10 @@ create table category (
 category_id int not null auto_increment primary key,
 category_name varchar(100) not null
 );
-
+create table type_product(
+type_id int not null auto_increment primary key,
+type_name varchar(100) not null
+);
 create table `product`(
 product_id int not null auto_increment primary key,
 product_name varchar(100) not null,
@@ -42,7 +45,9 @@ color varchar(50),
 date_at datetime not null,
 product_status bit(1) not null,
 category_id int not null,
-foreign key(category_id) references category(category_id)
+foreign key(category_id) references category(category_id),
+type_id int not null,
+foreign key(type_id) references type_product(type_id)
 );
 
 create table `order`(

@@ -4362,6 +4362,8 @@ input[type="button"].btn-block {
     display: flex !important;
     -ms-flex-preferred-size: auto;
     flex-basis: auto;
+    position: relative;
+    left: 150px;
   }
   .navbar-expand-lg .navbar-toggler {
     display: none;

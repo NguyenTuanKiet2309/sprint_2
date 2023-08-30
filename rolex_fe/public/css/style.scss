@@ -131,6 +131,8 @@ a:focus {
 .navbar-brand {
   display: flex;
   align-items: center;
+  position: relative;
+    right: 130px;
 }
 
 .navbar-brand img {
