@@ -7,8 +7,10 @@ public class Images {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int imageId;
+    @Column(columnDefinition = "LongText")
     private String imageUrl;
     @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product productId;
 
     public Images() {

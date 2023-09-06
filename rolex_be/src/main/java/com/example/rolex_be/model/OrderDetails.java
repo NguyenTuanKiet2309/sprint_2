@@ -1,6 +1,7 @@
 package com.example.rolex_be.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class OrderDetails {
@@ -8,20 +9,17 @@ public class OrderDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderDetailsId;
     private int quantityOrderDetail;
-    @OneToMany
+    @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product productId;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "order_id")
     private Order orderId;
 
     public OrderDetails() {
     }
 
-    public OrderDetails(int orderDetailsId, int quantityOrderDetail, Product productId, Order orderId) {
-        this.orderDetailsId = orderDetailsId;
-        this.quantityOrderDetail = quantityOrderDetail;
-        this.productId = productId;
-        this.orderId = orderId;
-    }
+
 
     public int getOrderDetailsId() {
         return orderDetailsId;
@@ -39,13 +37,7 @@ public class OrderDetails {
         this.quantityOrderDetail = quantityOrderDetail;
     }
 
-    public Product getProductId() {
-        return productId;
-    }
 
-    public void setProductId(Product productId) {
-        this.productId = productId;
-    }
 
     public Order getOrderId() {
         return orderId;

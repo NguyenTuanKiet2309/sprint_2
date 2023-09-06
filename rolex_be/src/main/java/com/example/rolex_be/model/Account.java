@@ -7,7 +7,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAccount;
-    private String email;
+    private String username;
     private String passwords;
     @OneToOne
     private Role roleId;
@@ -17,7 +17,7 @@ public class Account {
 
     public Account(int id_account, String email, String passwords, Role role_id) {
         this.idAccount = id_account;
-        this.email = email;
+        this.username = email;
         this.passwords = passwords;
         this.roleId = role_id;
     }
@@ -30,12 +30,12 @@ public class Account {
         this.idAccount = idAccount;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String email) {
+        this.username = email;
     }
 
     public String getPasswords() {

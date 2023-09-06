@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../login-register.css";
+import facebook from "../facebook.png";
+import google from "../google.png";
 export default function Login() {
   return (
     <div className="main">
@@ -48,16 +50,7 @@ export default function Login() {
             Đăng kí thành viên mới
           </Link>
         </div>
-        <div className="social">
-          <div className="social-facebook">
-            <img src=""></img>
-            <div> Đăng nhập bằng Facbook</div>
-          </div>
-          <div className="social-google">
-            <img src=""></img>
-            <div>Đăng nhập bằng Google</div>
-          </div>
-        </div>
+        
       </form>
     </div>
   );

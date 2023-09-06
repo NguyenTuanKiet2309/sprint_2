@@ -1,6 +1,7 @@
 package com.example.rolex_be.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -11,27 +12,31 @@ public class Product {
     private String productCode;
     private double price;
     private int quantity;
-    private String image;
-    private int size;
+    private String size;
     private String material;
     private String color;
+
+    @Column(columnDefinition = "DATE")
     private String dateAt;
+
     private boolean productStatus;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category categoryId;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "type_id")
     private TypeProduct typeId;
+
 
     public Product() {
     }
 
-    public Product(int productId, String productName, String productCode, double price, int quantity, String image, int size, String material, String color, String dateAt, boolean productStatus, Category categoryId, TypeProduct typeId) {
+    public Product(int productId, String productName, String productCode, double price, int quantity, String size, String material, String color, String dateAt, boolean productStatus, Category categoryId, TypeProduct typeId) {
         this.productId = productId;
         this.productName = productName;
         this.productCode = productCode;
         this.price = price;
         this.quantity = quantity;
-        this.image = image;
         this.size = size;
         this.material = material;
         this.color = color;
@@ -81,19 +86,12 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getImage() {
-        return image;
-    }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public int getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(String size) {
         this.size = size;
     }
 

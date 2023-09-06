@@ -1,151 +1,32 @@
 import { Link, NavLink } from "react-router-dom";
+import image1 from "../530109.jpg";
+import image2 from "../530111.jpg";
+import image3 from "../530102.jpg"
+import { useEffect, useState } from "react";
+import { findAllCategory } from "../services/CategoryService";
 
 export default function HomePage() {
+  const [category,setCategory] = useState([]);
+
+  const getAllCategory = async () => {
+    try {
+        const data = await findAllCategory();
+        setCategory(data);
+        console.log(category);
+     } catch (Error) {
+         console.log("Không tìm thấy dữ liệu!!!!")
+    }
+  };
+
+  useEffect(()=>{
+    getAllCategory();
+    console.log(category);
+  },[])
+
   return (
     <div>
       <section className=" slider_section position-relative">
-        {/* <div
-          id="carouselExampleControls"
-          className="carousel slide"
-          data-ride="carousel">
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <div className="slider_item-box">
-                <div className="slider_item-container">
-                  <div className="container">
-                    <div className="row">
-                      <div className="col-md-5">
-                        <div className="slider_img-box">
-                          <div>
-                            <img
-                              src="https://wpbingosite.com/wordpress/wrish/wp-content/uploads/2021/10/slider3.jpg"
-                              alt=""
-                              className
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-7">
-                        <div
-                          className="slider_item-detail"
-                          style={{ color: "#fff" }}
-                        >
-                          <div>
-                            <h2>TIMELESS & ELEGANT</h2>
-                            <h3>THE CLASSICS</h3>
-                            <div>
-                              <span>
-                                Complete your everyday look with a classic
-                                leather strap watch.
-                              </span>
-                            </div>
-                            <div className="d-flex">
-                              <a className="slider-btn1 mr-3">SHOP NOW</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <div className="slider_item-box">
-                <div className="slider_item-container">
-                  <div className="container">
-                    <div className="row">
-                      <div className="col-md-5">
-                        <div className="slider_img-box">
-                          <div>
-                            <img
-                              src="https://wpbingosite.com/wordpress/wrish/wp-content/uploads/2021/10/slider2.jpg"
-                              alt=""
-                              className
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-7">
-                        <div className="slider_item-detail">
-                          <div>
-                            <h2>TIMELESS & ELEGANT</h2>
-                            <h3>BEST SELLER</h3>
-                            <div>
-                              <span>
-                                Complete your everyday look with a classic
-                                leather strap watch.
-                              </span>
-                            </div>
-                            <div className="d-flex">
-                              <a className="slider-btn1 mr-3">SHOP NOW</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <div className="slider_item-box">
-                <div className="slider_item-container">
-                  <div className="container">
-                    <div className="row">
-                      <div className="col-md-5">
-                        <div className="slider_img-box">
-                          <div>
-                            <img
-                              src="https://wpbingosite.com/wordpress/wrish/wp-content/uploads/2021/10/slider1.jpg"
-                              alt=""
-                              className
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-7">
-                        <div className="slider_item-detail">
-                          <div>
-                            <h2 className>TIMELESS & ELEGANT</h2>
-                            <h3>THE ARRIVALS</h3>
-                            <div>
-                              <span>
-                                Complete your everyday look with a classic
-                                leather strap watch.
-                              </span>
-                            </div>
-                            <div className="d-flex">
-                              <a className="slider-btn1 mr-3">SHOP NOW</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="custom_carousel-control">
-            <a
-              className="carousel-control-prev"
-              href="#carouselExampleControls"
-              role="button"
-              data-slide="prev"
-            >
-              <span className="sr-only">Previous</span>
-            </a>
-            <a
-              className="carousel-control-next"
-              href="#carouselExampleControls"
-              role="button"
-              data-slide="next"
-            >
-              <span className="sr-only">Next</span>
-            </a>
-          </div>
-        </div> */}
+      
         <div id="mycarousel" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
@@ -157,7 +38,7 @@ export default function HomePage() {
             <div class="carousel-item active">
               <img
                 class="d-block w-100"
-                src="https://wpbingosite.com/wordpress/wrish/wp-content/uploads/2021/10/slider3.jpg"
+                src={image1}
               />
 
               <div
@@ -176,7 +57,7 @@ export default function HomePage() {
             <div class="carousel-item">
               <img
                 class="d-block w-100"
-                src="https://wpbingosite.com/wordpress/wrish/wp-content/uploads/2021/10/slider1.jpg"
+                src={image2}
               />
               <div
                 class="carousel-caption d-none d-md-block"
@@ -191,7 +72,7 @@ export default function HomePage() {
             <div class="carousel-item">
               <img
                 class="d-block w-100"
-                src="https://wpbingosite.com/wordpress/wrish/wp-content/uploads/2021/10/slider2.jpg"
+                src={image3}
               />
 
               <div
@@ -256,46 +137,26 @@ export default function HomePage() {
             </div>
           </div>
           <div className="container-fluid brand_item-container">
-            <div className="brand_item-box">
-              <div className="brand_img-box  item-1">
-                <Link to={"/rolex-world/products"} style={{ color: "#fff" }}>Xem Thêm</Link>
-              </div>
-              <div className="brand_detail-box">
-                <h6 className>Rolex DateJust</h6>
-              </div>
-            </div>
-            <div className="brand_item-box">
-              <div className="brand_img-box  item-2">
-                <a style={{ color: "#fff" }}>Xem Thêm</a>{" "}
-              </div>
-              <div className="brand_detail-box">
-                <h6 className>Rolex Day-Date</h6>
-              </div>
-            </div>
-            <div className="brand_item-box">
-              <div className="brand_img-box  item-3">
-                <a style={{ color: "#fff" }}>Xem Thêm</a>{" "}
-              </div>
-              <div className="brand_detail-box">
-                <h6 className>Rolex CosmoGrahp Daytona</h6>
-              </div>
-            </div>
-            <div className="brand_item-box">
-              <div className="brand_img-box  item-4">
-                <a style={{ color: "#fff" }}>Xem Thêm</a>
-              </div>
-              <div className="brand_detail-box">
-                <h6 className>Rolex 1908</h6>
-              </div>
-            </div>
-            <div className="brand_item-box">
-              <div className="brand_img-box  item-5">
-                <a style={{ color: "#fff" }}>Xem Thêm</a>
-              </div>
-              <div className="brand_detail-box">
-                <h6 className>Rolex Submariner</h6>
-              </div>
-            </div>
+          {category.map((categorys, index) => {
+  const backgroundImageStyle = {
+    backgroundImage: `url(${categorys.images})`,
+  };
+
+  return (
+    <div className="brand_item-box" >
+      <div className="brand_img-box"style={backgroundImageStyle}>
+        <Link to={"/rolex-world/products"} style={{ color: "#fff" }}>
+          Xem Thêm
+        </Link>
+      </div>
+      <div className="brand_detail-box">
+        <h6 className>{categorys.categoryName}</h6>
+      </div>
+    </div>
+  );
+})}
+            
+            
           </div>
         </section>
         {/* end brand section */}

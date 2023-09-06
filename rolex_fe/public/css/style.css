@@ -333,25 +333,7 @@ a:focus {
   position: relative;
 }
 
-.brand_img-box.item-1 {
-  background-image: url(../images/item-1.jpg);
-}
 
-.brand_img-box.item-2 {
-  background-image: url(../images/item-2.jpg);
-}
-
-.brand_img-box.item-3 {
-  background-image: url(../images/item-3.jpg);
-}
-
-.brand_img-box.item-4 {
-  background-image: url(../images/item-4.jpg);
-}
-
-.brand_img-box.item-5 {
-  background-image: url(../images/item-5.jpg);
-}
 
 .brand_img-box {
   display: -webkit-box;

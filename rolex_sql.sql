@@ -118,3 +118,9 @@ INSERT INTO `rolex`.`product` (`product_id`, `product_name`, `product_code`, `pr
 
 INSERT INTO `rolex`.`role` (`role_id`, `role_name`) VALUES ('1', 'ROLE_ADMIN');
 INSERT INTO `rolex`.`role` (`role_id`, `role_name`) VALUES ('2', 'ROLE_USER');
+
+INSERT INTO `rolex`.`account` (`account_id`, `email`, `passwords`, `role_id`) VALUES ('1', 'tuankiett2309@gmail.com', '123', '1');
+INSERT INTO `rolex`.`account` (`account_id`, `email`, `passwords`, `role_id`) VALUES ('2', 'ngocnga@gmail.com', '123', '2');
+
+INSERT INTO `rolex`.`user` (`id_user`, `name_user`, `phone_number`, `email`, `address`, `date_of_birth`, `gender`, `account_id`) VALUES ('1', 'Nguyễn Tuấn Kiệt', '0965702079', 'tuankiett2309@gmail.com', 'Da Nang', '1996-07-09', 0, '1');
+INSERT INTO `rolex`.`user` (`id_user`, `name_user`, `phone_number`, `email`, `address`, `date_of_birth`, `gender`, `account_id`) VALUES ('2','Ngọc Nga', '0965922279', 'ngocnga@gmail.com', 'Da Nang', '1999-03-31',1, '2');

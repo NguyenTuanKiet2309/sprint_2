@@ -7,17 +7,35 @@ public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idShoppingCart;
+    private int quantity;
     @OneToOne
     private User user;
-//    @OneToMany
-//    private Product product;
+    @ManyToOne
+    private Product product;
+
+    public ShoppingCart(int idShoppingCart, int quantity, User user, Product product) {
+        this.idShoppingCart = idShoppingCart;
+        this.quantity = quantity;
+        this.user = user;
+        this.product = product;
+    }
 
     public ShoppingCart() {
     }
 
-    public ShoppingCart(int idShoppingCart, User user, Product product) {
-        this.idShoppingCart = idShoppingCart;
-        this.user = user;
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
         this.product = product;
     }
 
@@ -37,11 +55,5 @@ public class ShoppingCart {
         this.user = user;
     }
 
-    public Product getProduct() {
-        return product;
-    }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 }

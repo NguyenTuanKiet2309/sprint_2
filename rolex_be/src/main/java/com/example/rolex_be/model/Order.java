@@ -3,6 +3,7 @@ package com.example.rolex_be.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -10,6 +11,7 @@ public class Order {
     private String dateOrder;
     private boolean orderStatus;
     @ManyToOne
+    @JoinColumn(name = "id_user")
     private User userId;
 
     public Order() {

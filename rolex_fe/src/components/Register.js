@@ -65,16 +65,7 @@ export default function Register() {
               Đăng nhập
             </Link>
           </div>
-          <div className="social">
-            <div className="social-facebook">
-              <img src=""></img>
-              <div> Tham gia với tài khoản Facbook</div>
-            </div>
-            <div className="social-google">
-              <img src=""></img>
-              <div>Tham gia với tài khoản Google</div>
-            </div>
-          </div>
+        
         </form>
       </div>
     </>

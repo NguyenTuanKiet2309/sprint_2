@@ -112,21 +112,18 @@ form input {
 }
 .social .social-facebook{
     display: flex;
-    background-color: #2b5eb5;
-    width: 48%;
-    padding: 10px;
     /* border-radius: 5px; */
-    justify-content: space-around;
+    justify-content: center;
+    position: relative;
+    left: 200px;
 
 }
 .social .social-google {
     display: flex;
-    width: 48%;
-   background-color: #ee7285;
-   padding: 10px;
-   /* border-radius: 5px;  */
    justify-content: space-around;  
    justify-items: center;
+   position: relative;
+   right: 250px;
 }
 .social .social-facebook img,.social .social-google img{
     width: 30px;
