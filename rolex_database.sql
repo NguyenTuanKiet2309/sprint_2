@@ -41,11 +41,16 @@ INSERT INTO `rolex_database`.`product` (`product_id`, `color`, `date_at`, `mater
 INSERT INTO `role` (`id_role`, `name_role`) VALUES ('1', 'ROLE_ADMIN');
 INSERT INTO `role` (`id_role`, `name_role`) VALUES ('2', 'ROLE_USER');
 
-INSERT INTO `account` (`id_account`, `email`, `passwords`, `role_id_id_role`) VALUES ('1', 'tuankiett2309@gmail.com', '123', '1');
-INSERT INTO `account` (`id_account`, `email`, `passwords`, `role_id_id_role`) VALUES ('2', 'ngocnga@gmail.com', '123', '2');
+INSERT INTO `account` (`id_account`, `username`, `passwords`, `role_id_id_role`) VALUES ('1', 'tuankiett2309@gmail.com', '123', '1');
+INSERT INTO `account` (`id_account`, `username`, `passwords`, `role_id_id_role`) VALUES ('2', 'ngocnga@gmail.com', '123', '2');
 
 INSERT INTO`user` (`id_user`, `name_user`, `phone_number`, `email`, `address`, `date_of_birth`, `gender`, `account_id_id_account`) VALUES ('1', 'Nguyễn Tuấn Kiệt', '0965702079', 'tuankiett2309@gmail.com', 'Da Nang', '1996-07-09', 0, '1');
 INSERT INTO`user` (`id_user`, `name_user`, `phone_number`, `email`, `address`, `date_of_birth`, `gender`, `account_id_id_account`) VALUES ('2','Ngọc Nga', '0965922279', 'ngocnga@gmail.com', 'Da Nang', '1999-03-31',1, '2');
 
 
-select * from category c
+select * from product p
+join category c on c.category_id = p.category_id
+where p.category_id = 1;
+
+select * from category
+where category_id = 1;

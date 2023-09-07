@@ -234,10 +234,10 @@ a:focus {
   background-repeat: no-repeat;
   background-size: 10px;
   background-position: center;
-
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
+
 
 .slider_section .carousel-control-prev:hover,
 .slider_section .carousel-control-next:hover {
@@ -719,3 +719,10 @@ a:focus {
   color: #3b71ca !important;
 }
 
+.logined{
+  display: flex;
+
+}
+.btn-logout{
+  
+}

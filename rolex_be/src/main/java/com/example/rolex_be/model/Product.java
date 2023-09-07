@@ -13,6 +13,8 @@ public class Product {
     private double price;
     private int quantity;
     private String size;
+
+    private String img;
     private String material;
     private String color;
 
@@ -44,6 +46,30 @@ public class Product {
         this.productStatus = productStatus;
         this.categoryId = categoryId;
         this.typeId = typeId;
+    }
+
+    public Product(int productId, String productName, String productCode, double price, int quantity, String size, String img, String material, String color, String dateAt, boolean productStatus, Category categoryId, TypeProduct typeId) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productCode = productCode;
+        this.price = price;
+        this.quantity = quantity;
+        this.size = size;
+        this.img = img;
+        this.material = material;
+        this.color = color;
+        this.dateAt = dateAt;
+        this.productStatus = productStatus;
+        this.categoryId = categoryId;
+        this.typeId = typeId;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public int getProductId() {

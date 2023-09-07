@@ -1,26 +1,72 @@
-import "../search.css"
+import { useLocation } from "react-router";
+import "../search.css";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { findProductByCategory } from "../services/ProductsService";
+import { findCategoryById } from "../services/CategoryService";
+
 export default function Product() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const categoryId = searchParams.get("categoryId");
+
+  console.log(categoryId);
+  const [products, setProducts] = useState([]);
+  const [category, setCategory] = useState([]);
+
+  const ShowProductsByCategory = async () => {
+    try {
+      const data = await findProductByCategory(categoryId);
+      console.log(products);
+      setProducts(data);
+    } catch (error) {
+      console.log("Error products:", error);
+    }
+  };
+
+  const showCategoryById = async () => {
+    try {
+      const data = await findCategoryById(categoryId);
+      console.log(category);
+      setCategory(data);
+    } catch (error) {
+      console.log("Error category:", error);
+    }
+  };
+  console.log(products);
+  console.log(category);
+  useEffect(() => {
+    ShowProductsByCategory();
+    showCategoryById();
+  }, []);
   return (
     <>
-    <div className="">
-      <img class="d-main-banner collection-banner alignnone wp-image-11285 size-full" src="https://rolex.dafc.com.vn/wp-content/uploads/rolex-watches/family-1908.jpg" alt="Family 1908" width="100%" height="230px"></img>
-    </div>
+      <div className="">
+        <img
+          class="d-main-banner collection-banner alignnone wp-image-11285 size-full"
+          src="https://rolex.dafc.com.vn/wp-content/uploads/rolex-watches/family-1908.jpg"
+          alt="Family 1908"
+          width="100%"
+          height="230px"
+        ></img>
+      </div>
       <section
         className="brand_section layout_padding2"
         style={{ backgroundColor: "#fff" }}
       >
         <div className="container">
           <div className="brand_heading" style={{ color: "black" }}>
-            <h3 className="custom_heading" style={{ color: "black" }}>
-              ĐẠI LÝ ROLEX CHÍNH THỨC TẠI VIỆT NAM
+            <h4>
+              {category.title}
+            </h4>
+            <h3 className="custom_heading" style={{ color: "black",fontSize:"23px" }}>
+              {category.categoryName}
             </h3>
-            <p className="font-weight-bold">
-              Đồng hồ Rolex được chế tạo từ những nguyên liệu thô tốt nhất và
-              được lắp ráp tỉ mỉ đến từng chi tiết. Mỗi thành phần được thiết
-              kế, phát triển và sản xuất với độ chính xác cao nhất tiêu chuẩn.
-            </p>
+            <p className="font" style={{textAlign:"center",paddingBottom: "1.5em"}}>{category.descriptions}</p>
           </div>
         </div>
+
         <div className="container-fluid brand_item-container">
           <div className="col-md-3">
             <div className="filter-wrapper">
@@ -52,7 +98,7 @@ export default function Product() {
                     </label>
                   </div>
                 </div>
-      
+
                 <div
                   className="cvp-live-filter cvp-checkbox "
                   data-name="tx_material"
@@ -92,19 +138,13 @@ export default function Product() {
                   data-sid="9c91f3d3cq"
                 >
                   <label className="cvp-label">Bộ Sưu Tập</label>
-                  <div className="radio">
-                
-                  </div>
+                  <div className="radio"></div>
                   <div className="radio">
                     <a href="/vi/dong-ho-rolex/dong-ho-rolex/">
-                      <label>
-              
-                        BỘ SƯU TẬP ĐỒNG HỒ ROLEX TẠI VIỆT NAM | RW
-                      </label>
+                      <label>BỘ SƯU TẬP ĐỒNG HỒ ROLEX TẠI VIỆT NAM | RW</label>
                     </a>
                   </div>
-                 
-                  
+
                   <div className="radio">
                     <a href="/vi/dong-ho-rolex/rolex-1908/">
                       <label>
@@ -117,7 +157,7 @@ export default function Product() {
                       </label>
                     </a>
                   </div>
-                  
+
                   <div className="radio">
                     <a href="/vi/dong-ho-rolex/rolex-cosmograph-daytona/">
                       <label>
@@ -155,7 +195,7 @@ export default function Product() {
                       </label>
                     </a>
                   </div>
-                  
+
                   <div className="radio">
                     <a href="/vi/dong-ho-rolex/rolex-gmt-master-ii/">
                       <label>
@@ -168,7 +208,7 @@ export default function Product() {
                       </label>
                     </a>
                   </div>
-                  
+
                   <div className="radio">
                     <a href="/vi/dong-ho-rolex/rolex-oyster-perpetual/">
                       <label>
@@ -235,36 +275,33 @@ export default function Product() {
           </div>
           <div className="col-md-9">
             <div className="row">
-              <div className="brand_item-box col-md-3">
-                <div className="brand_img-box  item-1 ">
-                  <a style={{ color: "#fff" }}>Xem Chi Tiết</a>
-                </div>
-                <div className="brand_detail-box">
-                  <h6 className>Rolex DateJust</h6>
-                  <button>Thêm Giỏ Hàng</button>
-                </div>
-              </div>
-              <div
-                className="brand_item-box col-md-3"
-                style={{ margin: "30px 50px 0 50px" }}
-              >
-                <div className="brand_img-box  item-2">
-                  <a style={{ color: "#fff" }}>Xem Chi Tiết</a>{" "}
-                </div>
-                <div className="brand_detail-box">
-                  <h6 className>Rolex Day-Date</h6>
-                  <button>Thêm Giỏ Hàng</button>
-                </div>
-              </div>
-              <div className="brand_item-box col-md-3">
-                <div className="brand_img-box  item-3">
-                  <a style={{ color: "#fff" }}>Xem Chi Tiết</a>{" "}
-                </div>
-                <div className="brand_detail-box">
-                  <h6 className>Rolex CosmoGrahp Daytona</h6>
-                  <button>Thêm Giỏ Hàng</button>
-                </div>
-              </div>
+              {products.map((product) => {
+                const backgroundImageStyle = {
+                  backgroundImage: `url(${product.img})`,
+                };
+                return (
+                  <div className="brand_item-box">
+                    <div className="brand_img-box" style={backgroundImageStyle}>
+                      <Link
+                        // onClick={()=>{HandleShowProducts(categorys.categoryId)}}
+                        // to={`/rolex-world/products?categoryId=${product.categoryId}`}
+                        style={{ color: "#fff" }}
+                      >
+                        Xem Chi Tiết
+                      </Link>
+                    </div>
+                    <div className="brand_detail-box">
+                      <h6>{product.productName}</h6>
+                      <div
+                        style={{ fontSize: "13px", fontFamily: "sans-serif" }}
+                      >
+                        {product.material},{product.size} và {product.color}
+                      </div>
+                      <button>Thêm Giỏ Hàng</button>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

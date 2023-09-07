@@ -4,7 +4,7 @@ export default function Register() {
     <>
       <div className="main">
         <form action="" method="POST" className="form" id="form-1">
-          <h3 className="heading">Thành viên đăng ký</h3>
+          <h3 className="heading">Đăng Ký Thành Viên</h3>
           <div className="form-group">
             <label htmlFor="fullname" className="form-label">
               Tên đầy đủ

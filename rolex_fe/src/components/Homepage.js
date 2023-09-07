@@ -1,48 +1,50 @@
 import { Link, NavLink } from "react-router-dom";
 import image1 from "../530109.jpg";
 import image2 from "../530111.jpg";
-import image3 from "../530102.jpg"
+import image3 from "../530102.jpg";
 import { useEffect, useState } from "react";
 import { findAllCategory } from "../services/CategoryService";
+import { findProductByCategory } from "../services/ProductsService";
 
 export default function HomePage() {
-  const [category,setCategory] = useState([]);
+  const [category, setCategory] = useState([]);
 
   const getAllCategory = async () => {
     try {
-        const data = await findAllCategory();
-        setCategory(data);
-        console.log(category);
-     } catch (Error) {
-         console.log("Không tìm thấy dữ liệu!!!!")
+      const data = await findAllCategory();
+      setCategory(data);
+      console.log(category);
+    } catch (Error) {
+      console.log("Không tìm thấy dữ liệu!!!!");
     }
   };
 
-  useEffect(()=>{
+  const HandleShowProducts = async (categoryId) => {
+    const data = await findProductByCategory(categoryId);
+    console.log(data); 
+  };
+
+  useEffect(() => {
     getAllCategory();
     console.log(category);
-  },[])
+  }, []);
 
   return (
-    <div>
+    <>
       <section className=" slider_section position-relative">
-      
-        <div id="mycarousel" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#mycarousel" data-slide-to="1" class=""></li>
-            <li data-target="#mycarousel" data-slide-to="2" class=""></li>
+        <div id="mycarousel" className="carousel slide" data-ride="carousel">
+          <ol className="carousel-indicators">
+            <li data-target="#mycarousel" data-slide-to="0" className="active"></li>
+            <li data-target="#mycarousel" data-slide-to="1" className=""></li>
+            <li data-target="#mycarousel" data-slide-to="2" className=""></li>
           </ol>
 
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img
-                class="d-block w-100"
-                src={image1}
-              />
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img className="d-block w-100" src={image1} />
 
               <div
-                class="carousel-caption d-none d-md-block"
+                className="carousel-caption d-none d-md-block"
                 style={{ color: "#fff" }}
               >
                 <h2>VƯỢT THỜI GIAN & THANH LỊCH</h2>
@@ -54,13 +56,10 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div class="carousel-item">
-              <img
-                class="d-block w-100"
-                src={image2}
-              />
+            <div className="carousel-item">
+              <img className="d-block w-100" src={image2} />
               <div
-                class="carousel-caption d-none d-md-block"
+                className="carousel-caption d-none d-md-block"
                 style={{ color: "#fff" }}
               >
                 <h2>VƯỢT THỜI GIAN & THANH LỊCH</h2>
@@ -69,48 +68,45 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div class="carousel-item">
-              <img
-                class="d-block w-100"
-                src={image3}
-              />
+            <div className="carousel-item">
+              <img className="d-block w-100" src={image3} />
 
               <div
-                class="carousel-caption d-none d-md-block"
+                className="carousel-caption d-none d-md-block"
                 style={{ color: "#fff" }}
               >
                 <h2>VƯỢT THỜI GIAN & THANH LỊCH</h2>
-                <h3>BEST SELLER</h3>
+                <h3>ĐĂNG CẤP TỰ TIN</h3>
                 <span>Một chiếc vương miện cho mỗi thành tựu</span>
               </div>
             </div>
           </div>
 
           <a
-            class="carousel-control-prev"
+            className="carousel-control-prev"
             href="#mycarousel"
             role="button"
             data-slide="prev"
           >
             {" "}
             <span
-              class="carousel-control-prev-icon"
+              className="carousel-control-prev-icon"
               aria-hidden="true"
             ></span>{" "}
-            <span class="sr-only">Previous</span>
+            <span className="sr-only">Previous</span>
           </a>
           <a
-            class="carousel-control-next"
+            className="carousel-control-next"
             href="#mycarousel"
             role="button"
             data-slide="next"
           >
             {" "}
             <span
-              class="carousel-control-next-icon"
+              className="carousel-control-next-icon"
               aria-hidden="true"
             ></span>{" "}
-            <span class="sr-only">Next</span>{" "}
+            <span className="sr-only">Next</span>{" "}
           </a>
         </div>
       </section>
@@ -122,8 +118,7 @@ export default function HomePage() {
         {/* brand section */}
         <section
           className="brand_section layout_padding2"
-          style={{ backgroundColor: "#fff" }}
-        >
+          style={{ backgroundColor: "#fff" }}>
           <div className="container">
             <div className="brand_heading" style={{ color: "black" }}>
               <h3 className="custom_heading" style={{ color: "black" }}>
@@ -137,26 +132,28 @@ export default function HomePage() {
             </div>
           </div>
           <div className="container-fluid brand_item-container">
-          {category.map((categorys, index) => {
-  const backgroundImageStyle = {
-    backgroundImage: `url(${categorys.images})`,
-  };
+            {category.map((categorys, index) => {
+              const backgroundImageStyle = {
+                backgroundImage: `url(${categorys.images})`,
+              };
 
-  return (
-    <div className="brand_item-box" >
-      <div className="brand_img-box"style={backgroundImageStyle}>
-        <Link to={"/rolex-world/products"} style={{ color: "#fff" }}>
-          Xem Thêm
-        </Link>
-      </div>
-      <div className="brand_detail-box">
-        <h6 className>{categorys.categoryName}</h6>
-      </div>
-    </div>
-  );
-})}
-            
-            
+              return (
+                <div className="brand_item-box">
+                  <div className="brand_img-box" style={backgroundImageStyle}>
+                    <Link
+                      // onClick={()=>{HandleShowProducts(categorys.categoryId)}}
+                      to={`/rolex-world/products?categoryId=${categorys.categoryId}`}
+                      style={{ color: "#fff" }}
+                    >
+                      Xem Thêm
+                    </Link>
+                  </div>
+                  <div className="brand_detail-box">
+                    <h6 className>{categorys.categoryName}</h6>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
         {/* end brand section */}
@@ -444,6 +441,6 @@ export default function HomePage() {
         </div>
       </section>
       {/* end contact section */}
-    </div>
+    </>
   );
 }

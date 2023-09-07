@@ -5,7 +5,7 @@
     font-family: sans-serif;
 }
 .main {
-    background-image: url("../src/Untitled.png");
+    /* background-image: url("../src/Untitled.png"); */
 /* background-repeat: no-repeat; */
     background-image: cover;
     min-height: 80vh;

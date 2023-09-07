@@ -1,12 +1,51 @@
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+
 export default function Header() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Thêm state để theo dõi trạng thái đăng nhập
+  const [username, setUsername] = useState(localStorage.getItem("username")); // Thêm state để lưu trữ tên người dùng
+  console.log(username);
+  // Hàm xử lý logout
+  const handleLogout = () => {
+    // Xóa token khỏi Local Storage
+    localStorage.removeItem("token");
+
+    // Reset trạng thái đăng nhập và tên người dùng
+    setIsLoggedIn(false);
+    setUsername(null);
+
+    // Điều hướng về trang đăng nhập
+    navigate("/rolex-world");
+  };
+
+  // Kiểm tra trạng thái đăng nhập
+  const checkLoggedIn = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+      // Lấy tên người dùng từ token hoặc từ API nếu có
+      const usernameFromToken = localStorage.getItem("name");; // Thay bằng phương thức lấy tên người dùng từ token hoặc API
+      setUsername(usernameFromToken);
+    }
+  };  
+
+  // Kiểm tra trạng thái đăng nhập khi thành phần được render
+  useEffect(() => {
+    checkLoggedIn();
+    setUsername(localStorage.getItem("username"))
+  }, [location]);
   return (
     <>
-   
-      <header className="header_section">
+      <header className="header_section sticky-top">
         <div className="container">
           <nav className="navbar navbar-expand-lg custom_nav-container pt-3">
-            <NavLink className="navbar-brand" to="/rolex-world" style={{position:"relative",right:"70px"}}>
+            <NavLink
+              className="navbar-brand"
+              to="/rolex-world"
+              style={{ position: "relative", right: "70px" }}
+            >
               <a aria-label="Quay về trang chủ" href="/vi">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -355,7 +394,7 @@ export default function Header() {
                       Trang Chủ
                     </NavLink>
                   </li>
-                
+
                   <li className="nav-item">
                     <a className="nav-link" href="watch.html">
                       {" "}
@@ -369,7 +408,10 @@ export default function Header() {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <NavLink to="/rolex-world/shopping-cart" className="nav-link">
+                    <NavLink
+                      to="/rolex-world/shopping-cart"
+                      className="nav-link"
+                    >
                       {" "}
                       Giỏ Hàng
                     </NavLink>
@@ -379,37 +421,36 @@ export default function Header() {
                       Chi TIết
                     </NavLink>
                   </li>
-                  <li className="nav-item">
-                    <NavLink
+                  <li className="nav-item logined">
+                    {isLoggedIn ? (
+                      <>
+                        <span className="nav-link">Xin chào, {username}</span>
+                        <button onClick={handleLogout} className="btn-logout">Đăng xuất</button>
+                      </>
+                    ) : (
+                      <NavLink to="/rolex-world/login" className="nav-link">Đăng nhập</NavLink>
+                    )}
+                    {/* <NavLink
                       to="/rolex-world/login"
                       className="nav-link"
-                      href=""
                     >
                       Đăng nhập
-                    </NavLink>
+                    </NavLink> */}
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <NavLink
                       to="/rolex-world/register"
                       className="nav-link"
-                      href=""
                     >
                       Đăng ký
                     </NavLink>
-                  </li>
+                  </li> */}
                 </ul>
-                {/* <form className="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-                  <button
-                    className="btn  my-2 my-sm-0 nav_search-btn"
-                    type="submit"
-                  />
-                </form> */}
               </div>
             </div>
           </nav>
         </div>
       </header>
-
     </>
   );
 }

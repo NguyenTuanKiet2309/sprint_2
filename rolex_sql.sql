@@ -79,6 +79,7 @@ foreign key (product_id) references product(product_id),
 order_id int not null,
 foreign key (order_id) references `order`(order_id)
 );
+
 create TABLE shopping_cart(
 	id_shopping_cart int PRIMARY KEY,
     user_id int NOT NULL,

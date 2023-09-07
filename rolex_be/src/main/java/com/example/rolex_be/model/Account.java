@@ -15,11 +15,11 @@ public class Account {
     public Account() {
     }
 
-    public Account(int id_account, String email, String passwords, Role role_id) {
-        this.idAccount = id_account;
-        this.username = email;
+    public Account(int idAccount, String username, String passwords, Role roleId) {
+        this.idAccount = idAccount;
+        this.username = username;
         this.passwords = passwords;
-        this.roleId = role_id;
+        this.roleId = roleId;
     }
 
     public int getIdAccount() {
