@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Thêm state để theo dõi trạng thái đăng nhập
   const [username, setUsername] = useState(localStorage.getItem("username")); // Thêm state để lưu trữ tên người dùng
-  console.log(username);
+
+
   // Hàm xử lý logout
   const handleLogout = () => {
     // Xóa token khỏi Local Storage
@@ -396,16 +397,16 @@ export default function Header() {
                   </li>
 
                   <li className="nav-item">
-                    <a className="nav-link" href="watch.html">
+                    <Link className="nav-link"  to={`/rolex-world/products/typeProduct?page=0&&typeId=1`}>
                       {" "}
                       Đồng Hồ Nam{" "}
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="watch.html">
+                    <Link className="nav-link" to={`/rolex-world/products/typeProduct?page=0&&typeId=2`}> 
                       {" "}
                       Đồng Hồ Nữ{" "}
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
                     <NavLink

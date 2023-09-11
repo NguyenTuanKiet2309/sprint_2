@@ -1,6 +1,8 @@
 *{
 font-family: sans-serif;
 }
+
+
 body {
   font-family: "Poppins", sans-serif;
   color: #000000;
@@ -40,8 +42,10 @@ body {
 }
 
 .custom_heading {
+  position: relative;
   text-transform: uppercase;
   font-weight: bold;
+  color: black;
 }
 
 /*header section*/
@@ -289,12 +293,12 @@ a:focus {
 }
 
 .brand_section {
-  text-align: center;
-  background-color: #c1dcf9;
+  text-align:start ;
+  background-color: #fff;
 }
 
 .brand_section h3 {
-  color: #fcfcfc;
+  /* color: #fcfcfc; */
 }
 .product_details button{
   background-color: #fff;
@@ -314,16 +318,16 @@ a:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content:start;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
 
 .brand_item-box {
   width: 265px;
-  margin: 30px 10px 0 10px;
+  margin: 0px 10px 20px ;
 }
 
 .brand_img-box {
@@ -395,11 +399,21 @@ a:focus {
 .brand_detail-box {
   margin-top: 20px;
 }
+.brand_detail-box .info-product {
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  height: 30px;
+}
 
-.brand_detail-box h5 {
-  text-transform: uppercase;
-  font-weight: bold;
-  color: #242425;
+.brand_detail-box .name-product {
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+
+}
+.brand_detail-box .name-product:last-child{
+  width: 224.54px
 }
 
 .brand_detail-box button{
@@ -409,6 +423,8 @@ a:focus {
     outline: none;
     border: none;
     border: 1px solid black;
+    margin-top: 10px;
+    width: 262px;
  
 }
 .brand_detail-box button:hover {
@@ -726,3 +742,150 @@ a:focus {
 .btn-logout{
   
 }
+.search-filter{
+  font-family: sans-serif;
+}
+.rlx-grid-filters__header-reset {
+  border-radius: 30px;
+  width: 60%;
+  border: none;
+  padding: 10px 20px;
+  margin: 20px 0;
+  background-color: #f0f0f0;
+}
+.brand_item-container .search-filter span:first-child{
+  font-size: 20px;
+  font-weight: 300;
+}
+.brand_item-container .cvp-label{
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 30px ;
+}
+.brand_item-container input[type=checkbox]{
+ margin-right: 10px;
+ 
+}
+.brand_section .brand_heading h3 {
+
+  
+}
+.brand_section .brand_heading h4{
+
+}
+.brand_heading .font {
+  align-items: center;
+}
+.radio a{
+  color: #000000;
+}
+.radio a:hover {
+  color: #145f3d;
+  font-weight: bold;
+  text-decoration: underline 1px solid #145f3d;
+}
+.brand_detail-box-home{
+display: flex;
+justify-content: center;
+
+}
+.name-brand{
+  align-items: center;
+
+}
+.custom_heading-home p{
+ text-transform: uppercase;
+ font-size: 24px;
+ font-weight: bold;
+}
+.custom_heading-home {
+  display: flex;
+  justify-content: center;
+}
+.cription{
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  margin-left: 16%;
+}
+.cription p{
+  font-weight: bold;
+  font-size: 18px;
+
+  
+}
+.font-descriptions{
+  text-align: center;
+  padding-bottom: 21px;
+  padding-top: 21px;
+}
+.filter-wrapper .checkbox input::before {
+  height: 15px;
+  width: 15px;
+}
+
+
+.filter-wrapper .checkbox input::before, .filter-wrapper .checkbox input::after {
+  position: absolute;
+}
+.filter-wrapper .checkbox input::before {
+  content: "";
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  border: 1px solid #212121;
+  background: #fff;
+}
+
+
+
+
+
+.filter-wrapper .checkbox input[type="checkbox"]::after {
+  content: none;
+}
+
+.filter-wrapper .checkbox input::after {
+  content: "";
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  background: #127749;
+}
+
+.filter-wrapper .checkbox input[type="checkbox"]:checked::after {
+  content: "";
+}
+.filter-wrapper .checkbox input[type="checkbox"]::after {
+  content: none;
+}
+
+.filter-wrapper .checkbox input::after {
+  content: "";
+  display: inline-block;
+  height: 17px;
+  width: 17px;
+  background: #127749;
+}
+
+.rolex-collection-view {
+  width: calc(100% - 200px)!important;
+  float: right!important;
+  background: #fff;
+  z-index: 999;
+  min-height: 500px;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 1020px
+}
+
+.rolex-collection-view{
+  color: #212121;
+  font-size: 14px
+}
+
+.subtitle {
+  display: block;
+  line-height: 16px;
+}
+

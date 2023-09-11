@@ -8,6 +8,7 @@ import { findProductByCategory } from "../services/ProductsService";
 
 export default function HomePage() {
   const [category, setCategory] = useState([]);
+  const [page,setPage] = useState(0);
 
   const getAllCategory = async () => {
     try {
@@ -19,14 +20,9 @@ export default function HomePage() {
     }
   };
 
-  const HandleShowProducts = async (categoryId) => {
-    const data = await findProductByCategory(categoryId);
-    console.log(data); 
-  };
-
   useEffect(() => {
     getAllCategory();
-    console.log(category);
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -120,18 +116,21 @@ export default function HomePage() {
           className="brand_section layout_padding2"
           style={{ backgroundColor: "#fff" }}>
           <div className="container">
-            <div className="brand_heading" style={{ color: "black" }}>
-              <h3 className="custom_heading" style={{ color: "black" }}>
-                ĐẠI LÝ ROLEX CHÍNH THỨC TẠI VIỆT NAM
-              </h3>
-              <p className="font-weight-bold">
+            <div className="brand_heading-home" style={{ color: "black" }}>
+              <div className="custom_heading-home" style={{ color: "black" }}>
+                <p>ĐẠI LÝ ROLEX CHÍNH THỨC TẠI VIỆT NAM</p>
+              </div>
+              <div className="cription">
+              <p style={{textAlign:"center"}}>
                 Đồng hồ Rolex được chế tạo từ những nguyên liệu thô tốt nhất và
                 được lắp ráp tỉ mỉ đến từng chi tiết. Mỗi thành phần được thiết
                 kế, phát triển và sản xuất với độ chính xác cao nhất tiêu chuẩn.
               </p>
+              </div>
+              
             </div>
           </div>
-          <div className="container-fluid brand_item-container">
+          <div className="container brand_item-container">
             {category.map((categorys, index) => {
               const backgroundImageStyle = {
                 backgroundImage: `url(${categorys.images})`,
@@ -141,15 +140,14 @@ export default function HomePage() {
                 <div className="brand_item-box">
                   <div className="brand_img-box" style={backgroundImageStyle}>
                     <Link
-                      // onClick={()=>{HandleShowProducts(categorys.categoryId)}}
-                      to={`/rolex-world/products?categoryId=${categorys.categoryId}`}
+                      to={`/rolex-world/products/list?page=${page}&&categoryId=${categorys.categoryId}`}
                       style={{ color: "#fff" }}
                     >
                       Xem Thêm
                     </Link>
                   </div>
-                  <div className="brand_detail-box">
-                    <h6 className>{categorys.categoryName}</h6>
+                  <div className="brand_detail-box-home">
+                    <h6 className ="name-brand">{categorys.categoryName}</h6>
                   </div>
                 </div>
               );

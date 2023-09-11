@@ -12,16 +12,18 @@ public class Category {
     @Column(columnDefinition = "LongText")
     private String descriptions;
     private String images;
+    private String images2;
     private String title;
 
     public Category() {
     }
 
-    public Category(int categoryId, String categoryName, String descriptions, String images, String title) {
+    public Category(int categoryId, String categoryName, String descriptions, String images, String images2, String title) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
         this.descriptions = descriptions;
         this.images = images;
+        this.images2 = images2;
         this.title = title;
     }
 
@@ -63,5 +65,13 @@ public class Category {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getImages2() {
+        return images2;
+    }
+
+    public void setImages2(String images2) {
+        this.images2 = images2;
     }
 }

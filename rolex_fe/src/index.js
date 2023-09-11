@@ -24,7 +24,8 @@ root.render(
         <Route path="/rolex-world/details" element={<DetailsProduct />}></Route>
         <Route path="/rolex-world/shopping-cart" element={<ShoppingCart />}></Route>
         <Route path="/rolex-world/register" element={<Register />}></Route>
-        <Route path="/rolex-world/products" element={<Product />}></Route>
+        <Route path="/rolex-world/products/list" element={<Product />}></Route>
+        <Route path="/rolex-world/products/typeProduct" element={<Product />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>
