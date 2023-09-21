@@ -19,7 +19,26 @@ public class OrderDetails {
     public OrderDetails() {
     }
 
+    public Product getProductId() {
+        return productId;
+    }
 
+    public void setProductId(Product productId) {
+        this.productId = productId;
+    }
+
+    public OrderDetails(int orderDetailsId, int quantityOrderDetail, Product productId, Order orderId) {
+        this.orderDetailsId = orderDetailsId;
+        this.quantityOrderDetail = quantityOrderDetail;
+        this.productId = productId;
+        this.orderId = orderId;
+    }
+
+    public OrderDetails(int quantityOrderDetail, Product productId, Order orderId) {
+        this.quantityOrderDetail = quantityOrderDetail;
+        this.productId = productId;
+        this.orderId = orderId;
+    }
 
     public int getOrderDetailsId() {
         return orderDetailsId;

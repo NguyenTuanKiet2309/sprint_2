@@ -2,7 +2,15 @@ import { Link } from "react-router-dom";
 export default function Register() {
   return (
     <>
-      <div className="main">
+      <div className="main row">
+      <div className="col-lg-12">
+        <div className="breadcrumb-text product-more">
+          <a href="./home.html">
+            <i className="fa fa-home" /> Trang chủ
+          </a>
+          <span>Đăng Ký</span>
+        </div>
+      </div>
         <form action="" method="POST" className="form" id="form-1">
           <h3 className="heading">Đăng Ký Thành Viên</h3>
           <div className="form-group">

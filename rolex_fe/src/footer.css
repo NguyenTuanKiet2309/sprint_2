@@ -27,7 +27,8 @@
   }
   
   .info_section .info_insta .insta_container img {
-    height: 45px;
+    width: 70px;
+    height: 70px;
   }
   
   .info_section .info_insta .insta_container .insta-box {
@@ -41,10 +42,12 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    background-color: #ffffff;
-    padding: 15px;
+
+    padding: 0px 10px 10px 10px;
   }
-  
+  .insta_coinsta-box img{
+   
+  }
   .info_section .info_contact .img-box {
     width: 35px;
     display: -webkit-box;
@@ -110,7 +113,7 @@
     margin-right: 25px;
   }
   .layout_padding2 {
-    padding: 75px 0;
+    /* padding: 75px 0 0 0; */
   }
   
   .layout_padding2-top {

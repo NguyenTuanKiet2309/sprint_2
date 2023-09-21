@@ -19,7 +19,7 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     @Override
-    public Category findCategoryById(int categoryId) {
-        return categoryRepository.findCategoryById(categoryId);
+    public Category findCategoryById(String categoryName) {
+        return categoryRepository.findCategoryById(categoryName);
     }
 }

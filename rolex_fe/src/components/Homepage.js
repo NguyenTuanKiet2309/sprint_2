@@ -8,8 +8,13 @@ import { findProductByCategory } from "../services/ProductsService";
 
 export default function HomePage() {
   const [category, setCategory] = useState([]);
-  const [page,setPage] = useState(0);
-
+  const [page, setPage] = useState(0);
+  const [typeName, setTypeName] = useState("");
+  const [material, setMaterial] = useState("");
+  const [size, setSize] = useState(0);
+  const [categories, setCategories] = useState("");
+  const [typeMan, setTypeMan] = useState("nam");
+  const [typeWoman, setTypeWoman] = useState("nu");
   const getAllCategory = async () => {
     try {
       const data = await findAllCategory();
@@ -19,7 +24,18 @@ export default function HomePage() {
       console.log("Không tìm thấy dữ liệu!!!!");
     }
   };
-
+  //back-top-top
+  const [showsScrolBtn, setShowScrolBtn] = useState(false);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const handleButtonVisibility = () => {
+      window.pageYOffset > 300 ? setShowScrolBtn(true) : setShowScrolBtn(false);
+    };
+    window.addEventListener("scroll", handleButtonVisibility);
+    return () => {
+      window.addEventListener("scroll", handleButtonVisibility);
+    };
+  }, []);
   useEffect(() => {
     getAllCategory();
     window.scrollTo(0, 0);
@@ -30,7 +46,11 @@ export default function HomePage() {
       <section className=" slider_section position-relative">
         <div id="mycarousel" className="carousel slide" data-ride="carousel">
           <ol className="carousel-indicators">
-            <li data-target="#mycarousel" data-slide-to="0" className="active"></li>
+            <li
+              data-target="#mycarousel"
+              data-slide-to="0"
+              className="active"
+            ></li>
             <li data-target="#mycarousel" data-slide-to="1" className=""></li>
             <li data-target="#mycarousel" data-slide-to="2" className=""></li>
           </ol>
@@ -114,20 +134,21 @@ export default function HomePage() {
         {/* brand section */}
         <section
           className="brand_section layout_padding2"
-          style={{ backgroundColor: "#fff" }}>
+          style={{ backgroundColor: "#fff" }}
+        >
           <div className="container">
             <div className="brand_heading-home" style={{ color: "black" }}>
               <div className="custom_heading-home" style={{ color: "black" }}>
                 <p>ĐẠI LÝ ROLEX CHÍNH THỨC TẠI VIỆT NAM</p>
               </div>
               <div className="cription">
-              <p style={{textAlign:"center"}}>
-                Đồng hồ Rolex được chế tạo từ những nguyên liệu thô tốt nhất và
-                được lắp ráp tỉ mỉ đến từng chi tiết. Mỗi thành phần được thiết
-                kế, phát triển và sản xuất với độ chính xác cao nhất tiêu chuẩn.
-              </p>
+                <p style={{ textAlign: "center" }}>
+                  Đồng hồ Rolex được chế tạo từ những nguyên liệu thô tốt nhất
+                  và được lắp ráp tỉ mỉ đến từng chi tiết. Mỗi thành phần được
+                  thiết kế, phát triển và sản xuất với độ chính xác cao nhất
+                  tiêu chuẩn.
+                </p>
               </div>
-              
             </div>
           </div>
           <div className="container brand_item-container">
@@ -135,19 +156,18 @@ export default function HomePage() {
               const backgroundImageStyle = {
                 backgroundImage: `url(${categorys.images})`,
               };
-
               return (
                 <div className="brand_item-box">
                   <div className="brand_img-box" style={backgroundImageStyle}>
                     <Link
-                      to={`/rolex-world/products/list?page=${page}&&categoryId=${categorys.categoryId}`}
+                      to={`/rolex-world/products/list?page=${page}&&categoryName=${categorys.categoryName}&&typeName=${typeName}&&material=${material}&&sizePage=${size}`}
                       style={{ color: "#fff" }}
                     >
                       Xem Thêm
                     </Link>
                   </div>
                   <div className="brand_detail-box-home">
-                    <h6 className ="name-brand">{categorys.categoryName}</h6>
+                    <h6 className="name-brand">{categorys.categoryName}</h6>
                   </div>
                 </div>
               );
@@ -156,6 +176,46 @@ export default function HomePage() {
         </section>
         {/* end brand section */}
         {/* why section */}
+        <section>
+          <div className="container">
+            <div className="collection-gender">Bộ sưu tập tiêu biểu</div>
+            <div className="row">
+              <div className="col-md-6">
+                <Link
+                onClick={()=>{
+                  localStorage.setItem("gender",0)
+                }}
+                  to={`/rolex-world/products/list?page=${page}&&categoryName=${categories}&&typeName=${typeMan}&&material=${material}&&sizePage=${size}`}
+                >
+                  {" "}
+                  <img
+                    alt="Đồng hồ nam Rolex"
+                    style={{ width: "570px", height: "445px" }}
+                    src="https://rolex.dafc.com.vn/wp-content/uploads/2021/04/mens-watches_gmt_master_2-1.jpg.webp"
+                  />
+                  <div className="gender-rolex">ĐỒNG HỒ NAM ROLEX</div>
+                </Link>
+              </div>
+
+              <div className="col-md-6">
+                {" "}
+                <Link
+                  onClick={()=>{
+                    localStorage.setItem("gender",1)
+                  }}
+                  to={`/rolex-world/products/list?page=${page}&&categoryName=${categories}&&typeName=${typeWoman}&&material=${material}&&sizePage=${size}`}
+                >
+                  <img
+                    alt="Đồng hồ nữ Rolex"
+                    style={{ width: "570px", height: "445px" }}
+                    src="https://rolex.dafc.com.vn/wp-content/uploads/2021/04/womens-watches_lady_datejust-1.jpg.webp"
+                  />
+                  <div className="gender-rolex">ĐỒNG HỒ NỮ ROLEX</div>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
         <section
           className="why_section layout_padding container-fluid"
           style={{ backgroundColor: "#f8f8f8" }}
@@ -210,10 +270,7 @@ export default function HomePage() {
                 </div>
                 <div className="detail_box">
                   <h5>Thanh toán bảo mật</h5>
-                  <p>
-                    variations of passages of Lorem Ipsum available, but the
-                    majority have suffered
-                  </p>
+                  <p>Cam kết không để lộ thông tin cá nhân của khách hàng</p>
                 </div>
               </div>
               <div className="col-md-6">
@@ -251,10 +308,7 @@ export default function HomePage() {
                 </div>
                 <div className="detail_box">
                   <h5>Hỗ trợ hàng đầu</h5>
-                  <p>
-                    variations of passages of Lorem Ipsum available, but the
-                    majority have suffered
-                  </p>
+                  <p>Luôn đi đầu trong việc hỗ trợ khách hàng 24/7</p>
                 </div>
               </div>
               <div className="col-md-6">
@@ -413,7 +467,9 @@ export default function HomePage() {
       {/* end client section */}
       {/* contact section */}
       <section className="contact_section layout_padding">
-        <h2 className="custom_heading text-center">LIÊN HỆ VỚI CHÚNG TÔI</h2>
+        <h2 className="custom_heading text-center" style={{ color: "#fff" }}>
+          LIÊN HỆ VỚI CHÚNG TÔI
+        </h2>
         <div className="container mt-5 pt-5">
           <form action>
             <div>
@@ -438,6 +494,20 @@ export default function HomePage() {
           </form>
         </div>
       </section>
+      {showsScrolBtn && (
+        <a
+          className="back-to-top"
+          onClick={() => {
+            window.scrollTo({
+              top: 0,
+              left: 0,
+              behavior: "smooth",
+            });
+          }}
+        >
+          <i className="fa fa-angle-double-up"></i>
+        </a>
+      )}
       {/* end contact section */}
     </>
   );

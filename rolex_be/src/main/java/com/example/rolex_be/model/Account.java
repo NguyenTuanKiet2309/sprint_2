@@ -10,6 +10,7 @@ public class Account {
     private String username;
     private String passwords;
     @OneToOne
+    @JoinColumn(name = "id_role")
     private Role roleId;
 
     public Account() {
@@ -17,6 +18,12 @@ public class Account {
 
     public Account(int idAccount, String username, String passwords, Role roleId) {
         this.idAccount = idAccount;
+        this.username = username;
+        this.passwords = passwords;
+        this.roleId = roleId;
+    }
+
+    public Account(String username, String passwords, Role roleId) {
         this.username = username;
         this.passwords = passwords;
         this.roleId = roleId;

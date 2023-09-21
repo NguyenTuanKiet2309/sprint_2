@@ -17,6 +17,6 @@ public interface ICategoryRepository extends JpaRepository<Category,Integer> {
     @Query(nativeQuery = true,value = "select * from category")
     List<Category> findAllCategory();
 
-    @Query(nativeQuery = true,value = "select * from category where category_id = :categoryId")
-    Category findCategoryById(int categoryId);
+    @Query(nativeQuery = true,value = "select * from category where category_name = :categoryName")
+    Category findCategoryById(@Param("categoryName") String categoryName);
 }

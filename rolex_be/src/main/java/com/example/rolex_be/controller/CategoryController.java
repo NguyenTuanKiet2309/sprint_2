@@ -26,9 +26,9 @@ public class CategoryController {
         }
     }
 
-    @GetMapping("/{categoryId}")
-    public ResponseEntity<Category> findCategoryById(@PathVariable int categoryId){
-        Category category = this.categoryService.findCategoryById(categoryId);
+    @GetMapping("/{categoryName}")
+    public ResponseEntity<Category> findCategoryById(@PathVariable String categoryName){
+        Category category = this.categoryService.findCategoryById(categoryName);
             return new ResponseEntity<>(category, HttpStatus.OK);
     }
 }

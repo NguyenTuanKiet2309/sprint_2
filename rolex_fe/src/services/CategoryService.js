@@ -5,7 +5,7 @@ export async function findAllCategory(){
     return res.data;
 }
 
-export async function findCategoryById(categoryId){
-    const res = await axios.get("http://localhost:8080/category/"+ categoryId);
+export async function findCategoryById(categoryName){
+    const res = await axios.get("http://localhost:8080/category/"+ categoryName);
     return res.data;
 }

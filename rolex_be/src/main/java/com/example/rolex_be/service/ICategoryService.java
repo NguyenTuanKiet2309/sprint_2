@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ICategoryService {
     List<Category> findAllCategory();
-    Category findCategoryById(int categoryId);
+    Category findCategoryById(String categoryName);
 }

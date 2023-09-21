@@ -1,7 +1,6 @@
 package com.example.rolex_be.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Product {
@@ -12,11 +11,10 @@ public class Product {
     private String productCode;
     private double price;
     private int quantity;
-    private String size;
-
+    private int size;
     private String img;
     private String material;
-    private String color;
+    private String designs;
 
     @Column(columnDefinition = "DATE")
     private String dateAt;
@@ -33,7 +31,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int productId, String productName, String productCode, double price, int quantity, String size, String material, String color, String dateAt, boolean productStatus, Category categoryId, TypeProduct typeId) {
+    public Product(int productId, String productName, String productCode, double price, int quantity, int size, String material, String color, String dateAt, boolean productStatus, Category categoryId, TypeProduct typeId) {
         this.productId = productId;
         this.productName = productName;
         this.productCode = productCode;
@@ -41,14 +39,14 @@ public class Product {
         this.quantity = quantity;
         this.size = size;
         this.material = material;
-        this.color = color;
+        this.designs = color;
         this.dateAt = dateAt;
         this.productStatus = productStatus;
         this.categoryId = categoryId;
         this.typeId = typeId;
     }
 
-    public Product(int productId, String productName, String productCode, double price, int quantity, String size, String img, String material, String color, String dateAt, boolean productStatus, Category categoryId, TypeProduct typeId) {
+    public Product(int productId, String productName, String productCode, double price, int quantity, int size, String img, String material, String color, String dateAt, boolean productStatus, Category categoryId, TypeProduct typeId) {
         this.productId = productId;
         this.productName = productName;
         this.productCode = productCode;
@@ -57,7 +55,7 @@ public class Product {
         this.size = size;
         this.img = img;
         this.material = material;
-        this.color = color;
+        this.designs = color;
         this.dateAt = dateAt;
         this.productStatus = productStatus;
         this.categoryId = categoryId;
@@ -113,11 +111,11 @@ public class Product {
     }
 
 
-    public String getSize() {
+    public int getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(int size) {
         this.size = size;
     }
 
@@ -129,12 +127,12 @@ public class Product {
         this.material = material;
     }
 
-    public String getColor() {
-        return color;
+    public String getDesigns() {
+        return designs;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setDesigns(String color) {
+        this.designs = color;
     }
 
     public String getDateAt() {

@@ -8,12 +8,21 @@ public class ShoppingCart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idShoppingCart;
     private int quantity;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
     public ShoppingCart(int idShoppingCart, int quantity, User user, Product product) {
+        this.idShoppingCart = idShoppingCart;
+        this.quantity = quantity;
+        this.user = user;
+        this.product = product;
+    }
+
+    public ShoppingCart(int quantity, User user, Product product) {
         this.idShoppingCart = idShoppingCart;
         this.quantity = quantity;
         this.user = user;

@@ -3,10 +3,10 @@ package com.example.rolex_be.model;
 import javax.persistence.*;
 
 @Entity
-public class User {
+public class    User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_user",nullable = false)
+    @Column(name = "user_id",nullable = false)
     private int id;
     private String nameUser;
     private String phoneNumber;
@@ -15,6 +15,7 @@ public class User {
     private String dateOfBirth;
     private boolean gender;
     @OneToOne
+    @JoinColumn(name = "id_account")
     private Account accountId;
 
     public User() {
@@ -22,6 +23,16 @@ public class User {
 
     public User(int id, String nameUser, String phoneNumber, String email, String address, String dateOfBirth, boolean gender, Account accountId) {
         this.id = id;
+        this.nameUser = nameUser;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.accountId = accountId;
+    }
+
+    public User(String nameUser, String dayOfBirth, boolean gender, String email, String address, String phone) {
         this.nameUser = nameUser;
         this.phoneNumber = phoneNumber;
         this.email = email;

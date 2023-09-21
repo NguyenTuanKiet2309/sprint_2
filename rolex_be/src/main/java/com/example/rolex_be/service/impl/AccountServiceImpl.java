@@ -19,7 +19,12 @@ public class AccountServiceImpl implements IAccountService {
     }
 
     @Override
-    public Account findByUsername(String username) {
-        return accountRepository.findByUsernameContainsIgnoreCase(username);
+    public Optional<Account> findByUsername(String username) {
+        return accountRepository.findByUsername(username);
+    }
+
+    @Override
+    public boolean checkUserExistsByEmail(String email) {
+        return accountRepository.existsByUsername(email);
     }
 }
