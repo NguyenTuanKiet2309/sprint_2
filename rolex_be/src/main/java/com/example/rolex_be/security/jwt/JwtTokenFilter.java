@@ -28,11 +28,15 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         try {
             String token = getJwt(request);
             if (token != null && jwtProvider.validateToken(token)) {
+                // lấy username từ chuỗi token
                 String username = jwtProvider.getUserNameFromToken(token);
+                //lấy thông tin người dùng từ username chuyển qua đối tượng Principal
                 UserDetails userDetails = userDetailService.loadUserByUsername(username);
+                // kiểm tra thông tin có hợp lệ hay khong
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities()
                 );
+                // hợp lệ thi cho sử dụng quyền được có
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }

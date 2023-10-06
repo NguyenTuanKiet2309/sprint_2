@@ -9,6 +9,8 @@ import {
 import CurrencyFormat from "./CurrencyFormat";
 import { getInfoUser, getOrderDetail } from "../services/UserService";
 import moment from "moment";
+import { useDispatch } from "react-redux";
+import { updateCart } from "../store/action/CartAction";
 
 export default function ReturnPage() {
   const navigate = useNavigate();
@@ -25,6 +27,7 @@ export default function ReturnPage() {
   const [paid, setPaid] = useState(true);
   const [listOrderDetail, setListOrderDetail] = useState([]);
   const [user, setUser] = useState({});
+  const dispatch = useDispatch();
   const headers = {
     Authorization: `Bearer ${localStorage.getItem("token")}`,
   };
@@ -37,6 +40,7 @@ export default function ReturnPage() {
 
   const display = () => {
     if (responseCode == "00") {
+     
       if (code == 0) {
         Swal.fire({
           icon: "success",
@@ -51,6 +55,7 @@ export default function ReturnPage() {
             name,
             email
           );
+          dispatch(updateCart(0));
           setOrderDetails(data);
           console.log(data);
           setFlag(!flag);
@@ -152,7 +157,7 @@ export default function ReturnPage() {
           <div className="col-lg-12">
             <div className="breadcrumb-text product-more">
               <a href="./home.html">
-                <i className="fa fa-home" /> Trang chủ
+                 Trang chủ
               </a>
               <a>
                 <span>Giỏ hàng</span>

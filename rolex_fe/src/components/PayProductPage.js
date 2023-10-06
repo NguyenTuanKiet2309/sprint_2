@@ -7,7 +7,7 @@ import { getCart, getCount } from "../store/action/CartAction";
 import { payWithVNpay } from "../services/PaymentService";
 import Swal from "sweetalert2";
 import { findDetailsByProductId } from "../services/ProductsService";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { getInfoUser } from "../services/UserService";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
@@ -19,6 +19,7 @@ export default function PayProductPage() {
   const [note, setNote] = useState(" ");
   const email = localStorage.getItem("username");
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   const headers = {
     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -34,10 +35,13 @@ export default function PayProductPage() {
     } catch (error) {}
   };
   const getUser = async () => {
+    if(!email){
+      Swal.fire("Đăng nhập để lấy thông tin");
+        navigate("/rolex-world/login");
+    }
     try {
       const data = await getInfoUser(email);
       setUser(data);
-      console.log(data);
     } catch {
       Swal.fire("Đăng nhập để lấy thông tin");
     }
@@ -300,7 +304,7 @@ export default function PayProductPage() {
           <div className="col-lg-12">
             <div className="breadcrumb-text product-more">
               <a href="./home.html">
-                <i className="fa fa-home" /> Trang chủ
+                Trang chủ
               </a>
               <a>
                 <span>Sản Phẩm Chi Tiết</span>

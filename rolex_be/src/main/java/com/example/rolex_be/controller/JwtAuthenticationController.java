@@ -53,8 +53,11 @@ public class JwtAuthenticationController {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(account.getUsername(), account.getPasswords())
             );
+            // set quyền cho người dùng vừa gửi tới
             SecurityContextHolder.getContext().setAuthentication(authentication);
+            // tạo token trả về client
             String token = jwtProvider.createToken(authentication);
+            // lấy ra đối tượng đang tương tác
             UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
             return new ResponseEntity<>(new JwtResponse(token, userPrinciple.getUsername(), userPrinciple.getAuthorities().toArray()[0].toString()), HttpStatus.OK);
         } else {

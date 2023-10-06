@@ -67,7 +67,7 @@ export default function Login() {
       <div className="col-lg-12">
         <div className="breadcrumb-text product-more">
           <a href="./home.html">
-            <i className="fa fa-home" /> Trang chủ
+           Trang chủ
           </a>
           <span>Đăng Nhập</span>
         </div>

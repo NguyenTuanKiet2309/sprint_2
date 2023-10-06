@@ -55,7 +55,6 @@ public class CartController {
         }
     }
 
-
     @PostMapping("/add/{idProduct}/{num}")
     public ResponseEntity<?> addProductToCartDetail(@PathVariable int idProduct, @PathVariable int num) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -73,7 +72,6 @@ public class CartController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
-
     @PostMapping("/minius/{idProduct}")
     public ResponseEntity<?> miniusProductOnCart(@PathVariable int idProduct) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -92,7 +90,6 @@ public class CartController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
-
     @DeleteMapping("/delete/{idProduct}")
     public ResponseEntity<?> deleteProductOnCart(@PathVariable int idProduct) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -106,7 +103,6 @@ public class CartController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
     @GetMapping("/list")
     public ResponseEntity<List<ShoppingCart>> getListCartByUser(HttpServletRequest httpServletRequest) {
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -120,7 +116,6 @@ public class CartController {
         return new ResponseEntity<>(cartService.getListCartByUser(user.getId()), HttpStatus.OK);
     }
 
-
     @GetMapping("/product-on-cart")
     public ResponseEntity<Integer> countTotalProductByUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -132,7 +127,6 @@ public class CartController {
         }
         return new ResponseEntity<>(num, HttpStatus.OK);
     }
-
     @GetMapping("/count-product/{idProduct}")
     public ResponseEntity<Integer> countQuantityProductByProductId(@PathVariable("idProduct") int idProduct) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

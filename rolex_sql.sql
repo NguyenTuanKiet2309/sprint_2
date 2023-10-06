@@ -1,127 +1,321 @@
-create database rolex;
-use rolex;
+-- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
+--
+-- Host: localhost    Database: rolex_database
+-- ------------------------------------------------------
+-- Server version	8.0.33
 
-create table `role`(
-role_id int not null auto_increment primary key,
-role_name varchar(55)
-);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-create table `account`(
-account_id int not null auto_increment primary key,
-email varchar (60) unique,
-passwords varchar(60),
-role_id int not null,
-foreign key(role_id) references `role`(role_id)
-);
+--
+-- Table structure for table `account`
+--
 
-create table `user`(
-id_user int not null auto_increment primary key,
-name_user varchar(100) not null,
-phone_number varchar(20),
-email varchar(100) unique not null,
-address varchar(100),
-date_of_birth date not null,
-gender bit(1) not null,
-account_id int not null,
-foreign key(account_id) references `account`(account_id)
-);
+DROP TABLE IF EXISTS `account`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `account` (
+  `id_account` int NOT NULL AUTO_INCREMENT,
+  `passwords` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `id_role` int DEFAULT NULL,
+  PRIMARY KEY (`id_account`),
+  KEY `FKn2ojv1jm3miwie24w3mop7j1p` (`id_role`),
+  CONSTRAINT `FKn2ojv1jm3miwie24w3mop7j1p` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-create table category (
-category_id int not null auto_increment primary key,
-category_name varchar(100) not null,
-descriptions longtext not null,
-title varchar(250) not null
-);
+--
+-- Dumping data for table `account`
+--
 
-create table type_product(
-type_id int not null auto_increment primary key,
-type_name varchar(100) not null
-);
+LOCK TABLES `account` WRITE;
+/*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (1,'$2a$12$MqKbIIBUciekC9S9A3njG.wa4R6.Q0/rFAH1lxfOqpQMXte4h4Zj2','tuankiett2309@gmail.com',1),(2,'$2a$12$MqKbIIBUciekC9S9A3njG.wa4R6.Q0/rFAH1lxfOqpQMXte4h4Zj2','ngocnga@gmail.com',2),(3,'$2a$12$MqKbIIBUciekC9S9A3njG.wa4R6.Q0/rFAH1lxfOqpQMXte4h4Zj2','nam@gmail.com',2),(4,'$2a$12$MqKbIIBUciekC9S9A3njG.wa4R6.Q0/rFAH1lxfOqpQMXte4h4Zj2','hung@gmail.com',2),(5,'$2a$12$MqKbIIBUciekC9S9A3njG.wa4R6.Q0/rFAH1lxfOqpQMXte4h4Zj2','thai@gmail.com',2);
+/*!40000 ALTER TABLE `account` ENABLE KEYS */;
+UNLOCK TABLES;
 
-create table `product`(
-product_id int not null auto_increment primary key,
-product_name varchar(100) not null,
-product_code varchar(100) not null unique,
-price double not null,
-quantity int not null,
-size varchar(50) not null,
-material varchar(50),
-designs varchar(50),
-date_at datetime not null,
-product_status bit(1) default 0,
-category_id int not null,
-foreign key(category_id) references category(category_id),
-type_id int not null,
-foreign key(type_id) references type_product(type_id)
-);
+--
+-- Table structure for table `category`
+--
 
-create table images(
-image_id int primary key auto_increment,
-image_url longtext not null,
-product_id int,
-foreign key(product_id) references product(product_id)
-);
+DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `category` (
+  `category_id` int NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(255) DEFAULT NULL,
+  `descriptions` longtext,
+  `images` varchar(255) DEFAULT NULL,
+  `images2` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-create table `order`(
-order_id int not null auto_increment primary key,
-date_order datetime not null,
-order_status bit(1) default 0,
-id_user int not null, 
-foreign key (id_user) references `user`(id_user)
-);
+--
+-- Dumping data for table `category`
+--
 
-create table order_detail(
-order_detail_id int not null auto_increment primary key,
-quantity_order_detail int not null,
-price double,
-product_id int not null,
-foreign key (product_id) references product(product_id),
-order_id int not null,
-foreign key (order_id) references `order`(order_id)
-);
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Rolex DateJust','Bất kỳ ngày nào cũng có thể để lại dấu ấn lâu dài trong cuộc đời chúng ta và tạo tiền đề cho những khát vọng mới. Kể từ khi được tạo ra vào năm 1945, Datejust đã tiếp tục tự đổi mới đồng thời là biểu tượng cho định nghĩa về sự thanh lịch cổ điển của Rolex. Một cột mốc quan trọng trong lịch sử chế tạo đồng hồ, đây là chiếc đồng hồ đeo tay chống thấm nước tự lên dây đầu tiên có cửa sổ hiển thị ngày. Được phóng đại bởi ống kính Cyclops, những con số này là lời nhắc nhở rằng mặc dù 24 giờ đánh dấu một ngày, nhưng chúng ta phải biến những ngày đó thành một ngày đáng nhớ.','https://rolex.dafc.com.vn/wp-content/uploads/2023/04/m126234-0051_collection_upright_landscape-1.jpg.webp','https://rolex.dafc.com.vn/wp-content/uploads/rolex-watches/family-datejust.jpg','Nổi Bật Với Khả Năng Hiển Thị Ngày'),(2,'Rolex Cosmograph Daytona','Phong cách biểu tượng và hiệu suất vượt trội của Oyster Perpetual Cosmograph Daytona đã củng cố vị thế mang tính biểu tượng của nó vượt xa các đường đua mô tô.\n\nĐể đánh dấu kỷ niệm 60 năm của chiếc đồng hồ, Rolex đảm bảo huyền thoại sẽ tiếp tục tồn tại bằng cách xem lại toàn bộ dòng sản phẩm, thông qua quá trình gia công lại với độ chính xác cao liên quan đến vỏ, mặt cũng như bộ máy. Vô số điều chỉnh và phát triển là lời nhắc nhở rằng việc theo đuổi sự xuất sắc là một cuộc đua không có vạch đích.','https://rolex.dafc.com.vn/wp-content/uploads/2023/04/m126506-0001_collection_upright_landscape-1.jpg.webp','https://rolex.dafc.com.vn/wp-content/uploads/2023/04/family-daytona-1-scaled.jpg','Một Biểu Tượng Trường Tồn Với Thời Gian'),(3,'Rolex Day-Date','Oyster Perpetual Day-Date 36 mới chào đón mặt số làm bằng đá trang trí với tông màu lung linh gợi lên bầu không khí của bờ biển Địa Trung Hải. Đá aventurine màu xanh lá cây, carnelian và ngọc lam được kết hợp với đồng hồ lần lượt bằng vàng Everose 18 ct, vàng vàng và vàng trắng.\n\nĐể thể hiện chuyên môn chế tạo mặt số của Rolex, đồng hồ Day-Date 36 mới cũng là minh chứng cho sự tinh thông hoàn hảo của thương hiệu trong nghệ thuật đính đá quý. Sự kết hợp giữa đá, đá quý và kim loại quý đặc biệt này nhấn mạnh sự khác biệt và sang trọng của chiếc đồng hồ danh giá này.','https://rolex.dafc.com.vn/wp-content/uploads/2023/04/m228236-0012_collection_upright_landscape-1.jpg.webp','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/family-daydate-scaled.jpg','Mỗi Mặt Đồng Hồ Là Một Khám Phá'),(4,'Rolex GMT Master II','Cho phép người đeo theo dõi tiến trình thời gian ở múi giờ khác, GMT-Master II nêu bật mối liên hệ của chúng ta với thế giới. Hiện có hai phiên bản mới – Rolesor vàng và vàng 18 ct – với vành đồng hồ Cerachrom bằng gốm màu xám và đen, một sự kết hợp màu hoàn toàn mới.\n\nTay nghề thủ công mẫu mực được thể hiện bằng sự lựa chọn vật liệu và độ chính xác của quá trình hoàn thiện, kết hợp với nhau để thể hiện chiếc đồng hồ dưới ánh sáng đẹp nhất. Sự tương phản hài hòa giữa màu vàng lấp lánh của dây đeo Jubilee và viền hai màu với tông màu tối, trầm gợi lên đường đi của mặt trời và sự luân phiên của ngày và đêm.','https://rolex.dafc.com.vn/wp-content/uploads/2023/04/m126713grnr-0001_collection_upright_landscape-1.jpg','https://rolex.dafc.com.vn/wp-content/uploads/rolex-watches/family-gmt-master-II.jpg','Làm Nổi Bật Kết Nối Của Chúng Tôi Với Thế Giới'),(5,'Rolex Oyster Perpetual','Sống động với màu sắc, sức sống và sự tích cực, các mặt số mới của Oyster Perpetual 31, Oyster Perpetual 36 và Oyster Perpetual 41 được điểm xuyết bằng những bong bóng nhiều màu sắc vui tươi tái hợp năm màu sắc được giới thiệu cho dòng sản phẩm này vào năm 2020.\n\nThiết kế sủi bọt, hưng phấn này là sản phẩm của nghệ thuật và kỹ thuật bậc thầy. Việc trang trí mặt số được thực hiện trong môi trường được kiểm soát chặt chẽ để ngăn chặn mọi ô nhiễm từ bụi và đòi hỏi độ chính xác tối đa ở mọi giai đoạn để tạo ra màu sắc tuyệt vời.','https://rolex.dafc.com.vn/wp-content/uploads/2023/04/m124300-0001_collection_upright_landscape-1.jpg.webp','https://rolex.dafc.com.vn/wp-content/uploads/rolex-watches/family-oyster-perpetual.jpg','Họa Tiết Bong Bóng Tinh Tế'),(6,'Rolex Submariner','Ra mắt vào năm 1953, Rolex Submariner là đồng hồ đeo tay dành cho thợ lặn đầu tiên có khả năng chống thấm nước ở độ sâu 100 mét (330 feet) – hiện nay là 300 mét (1.000 feet). Các tính năng chính của nó, chẳng hạn như đai kính xoay có chia độ, màn hình phát quang, kim lớn và vạch chỉ giờ, là động lực tạo ra dòng đồng hồ lặn dài của Rolex sau này.\n\nSubmariner là chiếc đồng hồ mang tính biểu tượng mà danh tiếng của nó giờ đây đã vượt ra ngoài giới chuyên môn mà nó được thiết kế lần đầu tiên. Submariner, tiêu chuẩn tối thượng.','https://rolex.dafc.com.vn/wp-content/uploads/2023/04/m124060-0001_collection_upright_landscape-1.jpg.webp','https://rolex.dafc.com.vn/wp-content/uploads/rolex-watches/family-submariner.jpg','Niềm Tin Chinh Phục Vùng Nước Sâu'),(7,'Rolex Sea Dweller','Biểu tượng cho lịch sử chung lâu dài giữa Rolex và những nhà thám hiểm biển sâu, các mẫu Sea-Dweller, Rolex Deepsea và Deepsea Challenge là những chiếc đồng hồ dành cho thợ lặn chuyên nghiệp có độ bền siêu cao. Sea-Dweller, ra mắt năm 1967, có khả năng chống nước ở độ sâu 1.220 mét (4.000 feet) – ban đầu là 610 mét (2.000 feet). Rolex Deepsea, ra mắt năm 2008, chịu được áp lực ở độ sâu 3900 mét (12.800 feet) và Deepsea Challenge, được trình làng vào năm 2022, có thể đạt tới độ sâu 11.000 mét (36.090 feet).','https://rolex.dafc.com.vn/wp-content/uploads/2023/04/m126603-0001_collection_upright_landscape-1.jpg.webp','https://rolex.dafc.com.vn/wp-content/uploads/rolex-watches/family-sea-dweller.jpg','Vững Vàng Chống Chịu Áp Lực'),(8,'Rolex 1908','Thanh lịch, cổ điển và đương đại, Perpetual 1908 thể hiện tinh thần táo bạo lâu đời của Rolex. Kế thừa những quy tắc lịch sử của thương hiệu cũng như vô số cải tiến trong chế tạo đồng hồ, chiếc đồng hồ này đánh dấu một cột mốc mới trong việc theo đuổi sự xuất sắc của thương hiệu. Ý tưởng và sáng tạo mẫu mới này chứng tỏ chuyên môn nội bộ toàn diện của Nhà sản xuất.\n\nLấy cảm hứng từ chiếc Oyster Perpetual từ năm 1931, chiếc đồng hồ hoàn toàn mới này đáp ứng thách thức về một chiếc đồng hồ mỏng hơn theo tiêu chuẩn Rolex và báo trước sự xuất hiện của bộ sưu tập Perpetual, bộ sưu tập định nghĩa lại đồng hồ đeo tay truyền thống theo tinh thần tiên phong của thương hiệu. Cái tên ‘1908’ ám chỉ ngày nhãn hiệu ‘Rolex’ được đăng ký chính thức tại Thụy Sĩ.\n\nHứa hẹn hiệu suất vượt trội, chiếc 1908 đã tạo dựng được một vị trí cho riêng mình như một chiếc Rolex thấm nhuần truyền thống nhưng vẫn toát lên vẻ hiện đại.','https://rolex.dafc.com.vn/wp-content/uploads/2023/04/m52508-0006_collection_upright_landscape-1.jpg.webp','https://rolex.dafc.com.vn/wp-content/uploads/rolex-watches/family-1908.jpg','Diện Mạo Mới Của Sự Xuất Sắc'),(9,'Rolex Sky Dweller','Với hai múi giờ và lịch hàng năm, Sky-Dweller là người bạn đồng hành thanh lịch và đáng tin cậy của du khách thế giới. Dòng sản phẩm này đã được cập nhật với nhiều cải tiến chứng minh rằng, đối với Rolex, sự xuất sắc được thể hiện ngay cả trong những chi tiết nhỏ nhất.\n\nCác chi tiết trang trí mang tính thẩm mỹ được giới thiệu cùng với các phiên bản mới tham gia vào dòng sản phẩm này. Và đồng hồ chứng kiến sự phát triển về mặt kỹ thuật với sự ra đời của bộ chuyển động được trang bị những tiến bộ mới nhất trong công nghệ Rolex.','https://rolex.dafc.com.vn/wp-content/uploads/2023/04/m336239-0002_collection_upright_landscape-1.jpg.webp','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/family-sky-dweller-scaled.jpg','Tân Tiến Và Hơn Thế Nữa'),(10,'Rolex Yatch Master','Nhẹ và mạnh mẽ, Oyster Perpetual Yacht-Master 42 mới bằng titan RLX là đồng minh của những người tìm kiếm sự tự do di chuyển. Đặc biệt phù hợp với nhu cầu và áp lực của môn đua thuyền cạnh tranh, nó đặt chất lượng chế tạo đồng hồ xuất sắc phục vụ cho hoạt động thể thao.\n\nYacht-Master 42 là chiếc đồng hồ thứ hai bằng titan RLX được Rolex phát hành sau Cuộc thi Oyster Perpetual Deepsea Challenge, xác nhận rằng độ nhẹ là một phẩm chất cần được coi trọng.','https://rolex.dafc.com.vn/wp-content/uploads/2023/04/m226627-0001_collection_upright_landscape-1.jpg.webp','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/family-yacht-master-scaled.jpg','Làm chủ sự nhẹ nhàng, thanh thoát');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
 
-create TABLE shopping_cart(
-	id_shopping_cart int PRIMARY KEY,
-    user_id int NOT NULL,
-	product_id int NOT NULL,
-    quantity int CHECK(quantity >0),
-    is_delete bit default 0,
-	FOREIGN KEY(user_id)REFERENCES `user`(id_user),
-    FOREIGN KEY(product_id)REFERENCES product(product_id)
-);
+--
+-- Table structure for table `images`
+--
 
-INSERT INTO `rolex`.`category` (`category_id`, `category_name`, `descriptions`, `title`) VALUES ('1', 'Rolex DateJust', 'Bất kỳ ngày nào cũng có thể để lại dấu ấn lâu dài trong cuộc đời chúng ta và tạo tiền đề cho những khát vọng mới. Kể từ khi được tạo ra vào năm 1945, Datejust đã tiếp tục tự đổi mới đồng thời là biểu tượng cho định nghĩa về sự thanh lịch cổ điển của Rolex. Một cột mốc quan trọng trong lịch sử chế tạo đồng hồ, đây là chiếc đồng hồ đeo tay chống thấm nước tự lên dây đầu tiên có cửa sổ hiển thị ngày. Được phóng đại bởi ống kính Cyclops, những con số này là lời nhắc nhở rằng mặc dù 24 giờ đánh dấu một ngày, nhưng chúng ta phải biến những ngày đó thành một ngày đáng nhớ.', 'Make A Date Of A Day');
-INSERT INTO `rolex`.`category` (`category_id`, `category_name`, `descriptions`, `title`) VALUES ('2', 'Rolex Cosmograph Daytona', 'Phong cách biểu tượng và hiệu suất vượt trội của Oyster Perpetual Cosmograph Daytona đã củng cố vị thế mang tính biểu tượng của nó vượt xa các đường đua mô tô.\n\nĐể đánh dấu kỷ niệm 60 năm của chiếc đồng hồ, Rolex đảm bảo huyền thoại sẽ tiếp tục tồn tại bằng cách xem lại toàn bộ dòng sản phẩm, thông qua quá trình gia công lại với độ chính xác cao liên quan đến vỏ, mặt cũng như bộ máy. Vô số điều chỉnh và phát triển là lời nhắc nhở rằng việc theo đuổi sự xuất sắc là một cuộc đua không có vạch đích.', 'An Icon Defying Time');
-INSERT INTO `rolex`.`category` (`category_id`, `category_name`, `descriptions`, `title`) VALUES ('3', 'Rolex Day-Date', 'Oyster Perpetual Day-Date 36 mới chào đón mặt số làm bằng đá trang trí với tông màu lung linh gợi lên bầu không khí của bờ biển Địa Trung Hải. Đá aventurine màu xanh lá cây, carnelian và ngọc lam được kết hợp với đồng hồ lần lượt bằng vàng Everose 18 ct, vàng vàng và vàng trắng.\n\nĐể thể hiện chuyên môn chế tạo mặt số của Rolex, đồng hồ Day-Date 36 mới cũng là minh chứng cho sự tinh thông hoàn hảo của thương hiệu trong nghệ thuật đính đá quý. Sự kết hợp giữa đá, đá quý và kim loại quý đặc biệt này nhấn mạnh sự khác biệt và sang trọng của chiếc đồng hồ danh giá này.', 'Every Dial A Discovery');
-INSERT INTO `rolex`.`category` (`category_id`, `category_name`, `descriptions`, `title`) VALUES ('4', 'Rolex GMT Master', 'Cho phép người đeo theo dõi tiến trình thời gian ở múi giờ khác, GMT-Master II nêu bật mối liên hệ của chúng ta với thế giới. Hiện có hai phiên bản mới – Rolesor vàng và vàng 18 ct – với vành đồng hồ Cerachrom bằng gốm màu xám và đen, một sự kết hợp màu hoàn toàn mới.\n\nTay nghề thủ công mẫu mực được thể hiện bằng sự lựa chọn vật liệu và độ chính xác của quá trình hoàn thiện, kết hợp với nhau để thể hiện chiếc đồng hồ dưới ánh sáng đẹp nhất. Sự tương phản hài hòa giữa màu vàng lấp lánh của dây đeo Jubilee và viền hai màu với tông màu tối, trầm gợi lên đường đi của mặt trời và sự luân phiên của ngày và đêm.', 'Highlighting Our Connection To The World');
-INSERT INTO `rolex`.`category` (`category_id`, `category_name`, `descriptions`, `title`) VALUES ('5', 'Rolex Oyster Perpetual', 'Sống động với màu sắc, sức sống và sự tích cực, các mặt số mới của Oyster Perpetual 31, Oyster Perpetual 36 và Oyster Perpetual 41 được điểm xuyết bằng những bong bóng nhiều màu sắc vui tươi tái hợp năm màu sắc được giới thiệu cho dòng sản phẩm này vào năm 2020.\n\nThiết kế sủi bọt, hưng phấn này là sản phẩm của nghệ thuật và kỹ thuật bậc thầy. Việc trang trí mặt số được thực hiện trong môi trường được kiểm soát chặt chẽ để ngăn chặn mọi ô nhiễm từ bụi và đòi hỏi độ chính xác tối đa ở mọi giai đoạn để tạo ra màu sắc tuyệt vời.', 'An Effervescence Of Excellence');
-INSERT INTO `rolex`.`category` (`category_id`, `category_name`, `descriptions`, `title`) VALUES ('6', 'Rolex Submariner', 'Ra mắt vào năm 1953, Rolex Submariner là đồng hồ đeo tay dành cho thợ lặn đầu tiên có khả năng chống thấm nước ở độ sâu 100 mét (330 feet) – hiện nay là 300 mét (1.000 feet). Các tính năng chính của nó, chẳng hạn như đai kính xoay có chia độ, màn hình phát quang, kim lớn và vạch chỉ giờ, là động lực tạo ra dòng đồng hồ lặn dài của Rolex sau này.\n\nSubmariner là chiếc đồng hồ mang tính biểu tượng mà danh tiếng của nó giờ đây đã vượt ra ngoài giới chuyên môn mà nó được thiết kế lần đầu tiên. Submariner, tiêu chuẩn tối thượng.', 'Deep Confidence');
-INSERT INTO `rolex`.`category` (`category_id`, `category_name`, `descriptions`, `title`) VALUES ('7', 'Rolex Sea Dweller', 'Biểu tượng cho lịch sử chung lâu dài giữa Rolex và những nhà thám hiểm biển sâu, các mẫu Sea-Dweller, Rolex Deepsea và Deepsea Challenge là những chiếc đồng hồ dành cho thợ lặn chuyên nghiệp có độ bền siêu cao. Sea-Dweller, ra mắt năm 1967, có khả năng chống nước ở độ sâu 1.220 mét (4.000 feet) – ban đầu là 610 mét (2.000 feet). Rolex Deepsea, ra mắt năm 2008, chịu được áp lực ở độ sâu 3900 mét (12.800 feet) và Deepsea Challenge, được trình làng vào năm 2022, có thể đạt tới độ sâu 11.000 mét (36.090 feet).', 'Bravery Under Pressure');
-INSERT INTO `rolex`.`category` (`category_id`, `category_name`, `descriptions`, `title`) VALUES ('8', 'Rolex 1908', 'Thanh lịch, cổ điển và đương đại, Perpetual 1908 thể hiện tinh thần táo bạo lâu đời của Rolex. Kế thừa những quy tắc lịch sử của thương hiệu cũng như vô số cải tiến trong chế tạo đồng hồ, chiếc đồng hồ này đánh dấu một cột mốc mới trong việc theo đuổi sự xuất sắc của thương hiệu. Ý tưởng và sáng tạo mẫu mới này chứng tỏ chuyên môn nội bộ toàn diện của Nhà sản xuất.\n\nLấy cảm hứng từ chiếc Oyster Perpetual từ năm 1931, chiếc đồng hồ hoàn toàn mới này đáp ứng thách thức về một chiếc đồng hồ mỏng hơn theo tiêu chuẩn Rolex và báo trước sự xuất hiện của bộ sưu tập Perpetual, bộ sưu tập định nghĩa lại đồng hồ đeo tay truyền thống theo tinh thần tiên phong của thương hiệu. Cái tên ‘1908’ ám chỉ ngày nhãn hiệu ‘Rolex’ được đăng ký chính thức tại Thụy Sĩ.\n\nHứa hẹn hiệu suất vượt trội, chiếc 1908 đã tạo dựng được một vị trí cho riêng mình như một chiếc Rolex thấm nhuần truyền thống nhưng vẫn toát lên vẻ hiện đại.', 'The New Face Of Excellence');
-INSERT INTO `rolex`.`category` (`category_id`, `category_name`, `descriptions`, `title`) VALUES ('9', 'Rolex Sky Dweller', 'Với hai múi giờ và lịch hàng năm, Sky-Dweller là người bạn đồng hành thanh lịch và đáng tin cậy của du khách thế giới. Dòng sản phẩm này đã được cập nhật với nhiều cải tiến chứng minh rằng, đối với Rolex, sự xuất sắc được thể hiện ngay cả trong những chi tiết nhỏ nhất.\n\nCác chi tiết trang trí mang tính thẩm mỹ được giới thiệu cùng với các phiên bản mới tham gia vào dòng sản phẩm này. Và đồng hồ chứng kiến sự phát triển về mặt kỹ thuật với sự ra đời của bộ chuyển động được trang bị những tiến bộ mới nhất trong công nghệ Rolex.', 'To The Ultimate And Beyond');
-INSERT INTO `rolex`.`category` (`category_id`, `category_name`, `descriptions`, `title`) VALUES ('10', 'Rolex Yatch Master', 'Nhẹ và mạnh mẽ, Oyster Perpetual Yacht-Master 42 mới bằng titan RLX là đồng minh của những người tìm kiếm sự tự do di chuyển. Đặc biệt phù hợp với nhu cầu và áp lực của môn đua thuyền cạnh tranh, nó đặt chất lượng chế tạo đồng hồ xuất sắc phục vụ cho hoạt động thể thao.\n\nYacht-Master 42 là chiếc đồng hồ thứ hai bằng titan RLX được Rolex phát hành sau Cuộc thi Oyster Perpetual Deepsea Challenge, xác nhận rằng độ nhẹ là một phẩm chất cần được coi trọng.', 'Mastering Lightness');
+DROP TABLE IF EXISTS `images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `images` (
+  `image_id` int NOT NULL AUTO_INCREMENT,
+  `image_url` longtext,
+  `product_id` int DEFAULT NULL,
+  PRIMARY KEY (`image_id`),
+  KEY `FK8sfun6tj1hqb85ed52o8mkqyh` (`product_id`),
+  CONSTRAINT `FK8sfun6tj1hqb85ed52o8mkqyh` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=215 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `images`
+--
 
-INSERT INTO `rolex`.`type_product` (`type_id`, `type_name`) VALUES ('1', 'Nam');
-INSERT INTO `rolex`.`type_product` (`type_id`, `type_name`) VALUES ('2', 'Nữ');
+LOCK TABLES `images` WRITE;
+/*!40000 ALTER TABLE `images` DISABLE KEYS */;
+INSERT INTO `images` VALUES (1,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126234-0051_modelpage_front_facing_landscape.png',1),(2,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126234-0051_modelpage_laying_down_landscape.png',1),(3,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126234-0051_modelpage_in_box_landscape.jpg',1),(4,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126231-0044_modelpage_front_facing_landscape.png',2),(5,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126231-0044_modelpage_laying_down_landscape.png',2),(6,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m278274-0035_modelpage_front_facing_landscape.png',3),(7,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m278274-0035_modelpage_laying_down_landscape.png',3),(8,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m278274-0035_modelpage_in_box_landscape.jpg',3),(9,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m278240-0005_modelpage_front_facing_landscape.png',4),(10,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m278240-0005_modelpage_laying_down_landscape.png',4),(11,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m278240-0005_modelpage_in_box_landscape.jpg',4),(12,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126334-0023_modelpage_front_facing_landscape.png',5),(13,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126334-0023_modelpage_laying_down_landscape.png',5),(14,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126334-0023_modelpage_in_box_landscape.jpg',5),(15,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126334-0006_modelpage_front_facing_landscape.png',6),(16,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126334-0006_modelpage_laying_down_landscape.png',6),(17,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126334-0006_modelpage_in_box_landscape.jpg',6),(18,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126283rbr-0012_modelpage_front_facing_landscape.png',7),(19,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126283rbr-0012_modelpage_laying_down_landscape.png',7),(20,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126283rbr-0012_modelpage_in_box_landscape.jpg',7),(21,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126284rbr-0011_modelpage_front_facing_landscape.png',8),(22,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126284rbr-0011_modelpage_laying_down_landscape.png',8),(23,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126284rbr-0011_modelpage_in_box_landscape.jpg',8),(24,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126506-0001_modelpage_front_facing_landscape.png',9),(25,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126506-0001_modelpage_laying_down_landscape.png',9),(26,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126503-0004_modelpage_front_facing_landscape.png',10),(27,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126503-0004_modelpage_laying_down_landscape.png',10),(28,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126505-0001_modelpage_front_facing_landscape.png',11),(29,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126505-0001_modelpage_laying_down_landscape.png',11),(30,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126506-0002_modelpage_front_facing_landscape.png',12),(31,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126506-0002_modelpage_laying_down_landscape.png',12),(32,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126505-0002_modelpage_front_facing_landscape.png',13),(33,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126505-0002_modelpage_laying_down_landscape.png',13),(34,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126519ln-0006_modelpage_front_facing_landscape.png',14),(35,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126519ln-0006_modelpage_laying_down_landscape.png',14),(36,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126508-0003_modelpage_front_facing_landscape.png',15),(37,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126508-0003_modelpage_laying_down_landscape.png',15),(38,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126518ln-0012_modelpage_front_facing_landscape.png',16),(39,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126518ln-0012_modelpage_laying_down_landscape.png',16),(40,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126515ln-0006_modelpage_front_facing_landscape.png',17),(41,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126515ln-0006_modelpage_laying_down_landscape.png',17),(42,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m228236-0012_modelpage_front_facing_landscape.png',18),(43,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m228236-0012_modelpage_laying_down_landscape.png',18),(44,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m228236-0012_modelpage_in_box_landscape.jpg',18),(45,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m128348rbr-0049_modelpage_front_facing_landscape.png',19),(46,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m128348rbr-0049_modelpage_laying_down_landscape.png',19),(47,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m128345rbr-0068_modelpage_front_facing_landscape.png',20),(48,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m128345rbr-0068_modelpage_laying_down_landscape.png',20),(49,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m128349rbr-0031_modelpage_front_facing_landscape.png',21),(50,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m128349rbr-0031_modelpage_laying_down_landscape.png',21),(51,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m128239-0005_modelpage_front_facing_landscape.png',22),(52,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m128239-0005_modelpage_laying_down_landscape.png',22),(53,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m228348rbr-0002_modelpage_front_facing_landscape.png',23),(54,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m228348rbr-0002_modelpage_laying_down_landscape.png',23),(55,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m228239-0007_modelpage_front_facing_landscape.png',24),(56,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m228239-0007_modelpage_laying_down_landscape.png',24),(57,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m228239-0007_modelpage_in_box_landscape.jpg',24),(58,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m228349rbr-0003_modelpage_front_facing_landscape.png',25),(59,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m228349rbr-0003_modelpage_laying_down_landscape.png',25),(60,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m228349rbr-0003_modelpage_in_box_landscape.jpg',25),(61,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m228238-0061_modelpage_front_facing_landscape.png',26),(62,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m228238-0061_modelpage_laying_down_landscape.png',26),(63,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m228238-0061_modelpage_in_box_landscape.jpg',26),(64,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m128349rbr-0008_modelpage_front_facing_landscape.png',27),(65,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m128349rbr-0008_modelpage_laying_down_landscape.png',27),(66,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m128349rbr-0008_modelpage_in_box_landscape.jpg',27),(67,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m228238-0059_modelpage_front_facing_landscape.png',28),(68,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m228238-0059_modelpage_laying_down_landscape.png',28),(69,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m228238-0059_modelpage_in_box_landscape.jpg',28),(70,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126713grnr-0001_modelpage_front_facing_landscape.png',29),(71,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126713grnr-0001_modelpage_laying_down_landscape.png',29),(72,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126718grnr-0001_modelpage_front_facing_landscape.png',30),(73,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126718grnr-0001_modelpage_laying_down_landscape.png',30),(74,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126719blro-0003_modelpage_front_facing_landscape.png',31),(75,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126719blro-0003_modelpage_laying_down_landscape.png',31),(76,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126719blro-0003_modelpage_in_box_landscape.jpg',31),(77,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126720vtnr-0001_modelpage_front_facing_landscape.png',32),(78,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126720vtnr-0001_modelpage_laying_down_landscape.png',32),(79,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126720vtnr-0001_modelpage_in_box_landscape.jpg',32),(80,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126719blro-0002_modelpage_front_facing_landscape.png',33),(81,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126719blro-0002_modelpage_laying_down_landscape.png',33),(82,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126719blro-0002_modelpage_in_box_landscape.jpg',33),(83,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126711chnr-0002_modelpage_front_facing_landscape.png',34),(84,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126711chnr-0002_modelpage_laying_down_landscape.png',34),(85,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126711chnr-0002_modelpage_in_box_landscape.jpg',34),(86,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126715chnr-0001_modelpage_front_facing_landscape.png',35),(87,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126715chnr-0001_modelpage_laying_down_landscape.png',35),(88,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126710blro-0001_modelpage_front_facing_landscape.png',36),(89,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126710blro-0001_modelpage_laying_down_landscape.png',36),(90,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126710blro-0001_modelpage_in_box_landscape.jpg',36),(91,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126710blnr-0003_modelpage_front_facing_landscape.png',37),(92,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126710blnr-0003_modelpage_laying_down_landscape.png',37),(93,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126710blnr-0003_modelpage_in_box_landscape.jpg',37),(94,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m124300-0001_modelpage_front_facing_landscape.png',38),(95,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m124300-0008_modelpage_front_facing_landscape.png',38),(96,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m124300-0008_modelpage_front_facing_landscape.png',39),(97,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m124300-0008_modelpage_laying_down_landscape.png',39),(98,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126000-0009_modelpage_front_facing_landscape.png',40),(99,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126000-0009_modelpage_laying_down_landscape.png',40),(100,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m276200-0001_modelpage_front_facing_landscape.png',41),(101,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m276200-0001_modelpage_laying_down_landscape.png',41),(102,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m277200-0001_modelpage_laying_down_landscape.png',42),(103,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m277200-0001_modelpage_laying_down_landscape.png',42),(104,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m124200-0001_modelpage_front_facing_landscape.png',43),(105,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m124200-0001_modelpage_laying_down_landscape.png',43),(106,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m124300-0002_modelpage_front_facing_landscape.png',44),(107,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m124300-0002_modelpage_laying_down_landscape.png',44),(108,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m124200-0003_modelpage_front_facing_landscape.png',45),(109,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m124200-0003_modelpage_laying_down_landscape.png',45),(110,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m124300-0005_modelpage_laying_down_landscape.png',46),(111,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m124300-0005_modelpage_laying_down_landscape.png',46),(112,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m276200-0003_modelpage_front_facing_landscape.png',47),(113,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m276200-0003_modelpage_laying_down_landscape.png',47),(114,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m124200-0002_modelpage_front_facing_landscape.png',48),(115,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m124200-0002_modelpage_laying_down_landscape.png',48),(116,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m276200-0002_modelpage_front_facing_landscape.png',49),(117,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m276200-0002_modelpage_laying_down_landscape.png',49),(118,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m124060-0001_modelpage_front_facing_landscape.png',50),(119,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m124060-0001_modelpage_laying_down_landscape.png',50),(120,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m124060-0001_modelpage_in_box_landscape.jpg',50),(121,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126613lb-0002_modelpage_front_facing_landscape.png',51),(122,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126613lb-0002_modelpage_laying_down_landscape.png',51),(123,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126613lb-0002_modelpage_in_box_landscape.jpg',51),(124,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126610ln-0001_modelpage_front_facing_landscape.png',52),(125,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126610ln-0001_modelpage_laying_down_landscape.png',52),(126,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126610ln-0001_modelpage_in_box_landscape.jpg',52),(127,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126618lb-0002_modelpage_front_facing_landscape.png',53),(128,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126618lb-0002_modelpage_laying_down_landscape.png',53),(129,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126610lv-0002_modelpage_front_facing_landscape.png',54),(130,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126610lv-0002_modelpage_laying_down_landscape.png',54),(131,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126610lv-0002_modelpage_in_box_landscape.jpg',54),(132,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126618ln-0002_modelpage_front_facing_landscape.png',55),(133,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126618ln-0002_modelpage_laying_down_landscape.png',55),(134,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126618ln-0002_modelpage_in_box_landscape.jpg',55),(135,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126619lb-0003_modelpage_front_facing_landscape.png',56),(136,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126619lb-0003_modelpage_laying_down_landscape.png',56),(137,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126619lb-0003_modelpage_in_box_landscape.jpg',56),(138,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126613ln-0002_modelpage_front_facing_landscape.png',57),(139,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126613ln-0002_modelpage_laying_down_landscape.png',57),(140,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126603-0001_modelpage_front_facing_landscape.png',58),(141,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126603-0001_modelpage_laying_down_landscape.png',58),(142,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126603-0001_modelpage_laying_down_landscape.png',58),(143,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m136660-0003_modelpage_front_facing_landscape.png',59),(144,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m136660-0003_modelpage_laying_down_landscape.png',59),(145,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m136660-0003_modelpage_in_box_landscape.jpg',59),(146,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126600-0002_modelpage_front_facing_landscape.png',60),(147,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126600-0002_modelpage_laying_down_landscape.png',60),(148,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126600-0002_modelpage_in_box_landscape.jpg',60),(149,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m136660-0004_modelpage_front_facing_landscape.png',61),(150,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m136660-0004_modelpage_laying_down_landscape.png',61),(151,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m136660-0004_modelpage_in_box_landscape.jpg',61),(152,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m52508-0006_modelpage_front_facing_landscape.png',62),(153,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m52508-0002_modelpage_front_facing_landscape.png',62),(154,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m52508-0002_modelpage_front_facing_landscape.png',63),(155,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m52508-0002_modelpage_laying_down_landscape.png',63),(156,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m52509-0002_modelpage_front_facing_landscape.png',64),(157,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m52509-0002_modelpage_laying_down_landscape.png',64),(158,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m52509-0006_modelpage_front_facing_landscape.png',65),(159,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m52509-0006_modelpage_laying_down_landscape.png',65),(160,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m336239-0002_modelpage_front_facing_landscape.png',66),(161,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m336239-0002_modelpage_laying_down_landscape.png',66),(162,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m336934-0004_modelpage_front_facing_landscape.png',67),(163,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m336934-0004_modelpage_laying_down_landscape.png',67),(164,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m336933-0001_modelpage_front_facing_landscape.png',68),(165,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m336933-0001_modelpage_laying_down_landscape.png',68),(166,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m336235-0003_modelpage_front_facing_landscape.png',69),(167,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m336235-0003_modelpage_laying_down_landscape.png',69),(168,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m336935-0001_modelpage_front_facing_landscape.png',70),(169,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m336238-0002_modelpage_front_facing_landscape.png',70),(170,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m336238-0002_modelpage_front_facing_landscape.png',71),(171,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m336238-0002_modelpage_laying_down_landscape.png',71),(172,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m336938-0003_modelpage_front_facing_landscape.png',72),(173,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m336938-0003_modelpage_laying_down_landscape.png',72),(174,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m336933-0004_modelpage_front_facing_landscape.png',73),(175,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m336933-0004_modelpage_laying_down_landscape.png',73),(176,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m336934-0001_modelpage_front_facing_landscape.png',74),(177,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m336934-0001_modelpage_laying_down_landscape.png',74),(178,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m226627-0001_modelpage_front_facing_landscape.png',75),(179,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m226627-0001_modelpage_laying_down_landscape.png',75),(180,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m116688-0002_modelpage_front_facing_landscape.png',76),(181,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m116688-0002_modelpage_laying_down_landscape.png',76),(182,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m116688-0002_modelpage_in_box_landscape.jpg',77),(183,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m268622-0002_modelpage_front_facing_landscape.png',77),(184,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m268622-0002_modelpage_laying_down_landscape.png',77),(185,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m268621-0003_modelpage_front_facing_landscape.png',78),(186,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m268621-0003_modelpage_laying_down_landscape.png',78),(187,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m268621-0003_modelpage_in_box_landscape.jpg',78),(188,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m268655-0019_modelpage_front_facing_landscape.png',79),(189,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m268655-0019_modelpage_front_facing_landscape.png',79),(190,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m268655-0019_modelpage_in_box_landscape.jpg',79),(191,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126622-0001_modelpage_front_facing_landscape.png',80),(192,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126622-0001_modelpage_laying_down_landscape.png',80),(193,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126622-0001_modelpage_in_box_landscape.jpg',80),(194,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126621-0001_modelpage_front_facing_landscape.png',81),(195,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126621-0001_modelpage_laying_down_landscape.png',81),(196,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126621-0001_modelpage_in_box_landscape.jpg',81),(197,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m226658-0001_modelpage_front_facing_landscape.png',82),(198,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m226658-0001_modelpage_laying_down_landscape.png',82),(199,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m226658-0001_modelpage_in_box_landscape.jpg',82),(200,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m126655-0002_modelpage_front_facing_landscape.png',83),(201,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m126655-0002_modelpage_laying_down_landscape.png',83),(202,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m126655-0002_modelpage_in_box_landscape.jpg',83),(203,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m226659-0004_modelpage_front_facing_landscape.png',84),(204,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m226659-0004_modelpage_laying_down_landscape.png',84),(205,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m226659-0004_modelpage_in_box_landscape.jpg',84),(206,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m116681-0002_modelpage_front_facing_landscape.png',85),(207,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m116681-0002_modelpage_laying_down_landscape.png',85),(208,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m116681-0002_modelpage_in_box_landscape.jpg',85),(209,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m116680-0002_modelpage_front_facing_landscape.png',86),(210,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m116680-0002_modelpage_laying_down_landscape.png',86),(211,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m116680-0002_modelpage_in_box_landscape.jpg',86),(212,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-front-facing/landscape_assets/m226659-0002_modelpage_front_facing_landscape.png',87),(213,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-laying-down/landscape_assets/m226659-0002_modelpage_laying_down_landscape.png',87),(214,'https://rolex.dafc.com.vn/wp-content/uploads/watch-assets-in-box/landscape_assets/m226659-0002_modelpage_in_box_landscape.jpg',87);
+/*!40000 ALTER TABLE `images` ENABLE KEYS */;
+UNLOCK TABLES;
 
-INSERT INTO `rolex`.`product` (`product_id`, `product_name`, `product_code`, `price`, `quantity`, `size`, `color`, `material`, `date_at`, `category_id`, `type_id`) VALUES ('1', 'DATEJUST 36', 'D10321', '221977500', '3', '36 mm', 'vàng trắng', 'Oystersteel ', '2023-08-31', '1', '2');
-INSERT INTO `rolex`.`product` (`product_id`, `product_name`, `product_code`, `price`, `quantity`, `size`, `color`, `material`, `date_at`,  `category_id`, `type_id`) VALUES ('2', 'DATEJUST 36', 'D10312', '313868000', '3', '36 mm', 'vàng Everose', 'Oystersteel', '2023-08-31',  '1', '2');
-INSERT INTO `rolex`.`product` (`product_id`, `product_name`, `product_code`, `price`, `quantity`, `size`, `color`, `material`, `date_at`, `category_id`, `type_id`) VALUES ('3', 'DATEJUST 31', 'M278274', '255927000 ', '3', '31 mm', 'vàng trắng','Oystersteel', '2023-08-31', '1', '2');
-INSERT INTO `rolex`.`product` (`product_id`, `product_name`, `product_code`, `price`, `quantity`, `size`, `color`, `material`, `date_at`,  `category_id`, `type_id`) VALUES ('4', 'DATEJUST 31', 'M278240', '174970500', '3', '31 mm', 'trắng', 'Oystersteel', '2023-08-31',  '1', '2');
-INSERT INTO `rolex`.`product` (`product_id`, `product_name`, `product_code`, `price`, `quantity`, `size`, `color`, `material`, `date_at`, `category_id`, `type_id`) VALUES ('5', 'DATEJUST 31', 'M278341rbr', '389113500', '3', '31 mm', 'vàng Eversose và kim cương', 'Oystersteel', '2023-08-31',  '1', '2');
-INSERT INTO `rolex`.`product` (`product_id`, `product_name`, `product_code`, `price`, `quantity`, `size`, `color`, `material`, `date_at`, `category_id`, `type_id`) VALUES ('6', 'DATEJUST 41', 'M126331', '375046000', '3', '41 mm', 'vàng Everose', 'Oystersteel', '2023-08-31',  '1', '1');
-INSERT INTO `rolex`.`product` (`product_id`, `product_name`, `product_code`, `price`, `quantity`, `size`, `color`, `material`, `date_at`,  `category_id`, `type_id`) VALUES ('7', 'DATEJUST 38', 'M731331', '498220000', '3','38 mm', 'vàng trắng', 'Oystersteel', '2023-08-31',  '1', '1');
-INSERT INTO `rolex`.`product` (`product_id`, `product_name`, `product_code`, `price`, `quantity`, `size`, `color`, `material`, `date_at`, `category_id`, `type_id`) VALUES ('8', 'DATEJUST 41', 'M126303', '345787000 ', '3', '41 mm', 'vàng vàng', 'Oystersteel', '2023-08-31',  '1 ', '1');
-INSERT INTO `rolex`.`product` (`product_id`, `product_name`, `product_code`, `price`, `quantity`, `size`, `color`, `material`, `date_at`,  `category_id`, `type_id`) VALUES ('9', 'DATEJUST 40', 'M791231','239450000', '3', '40 mm', 'vàng vàng và kim cương', 'Oystersteel', '2023-08-31', '1', '1');
-INSERT INTO `rolex`.`product` (`product_id`, `product_name`, `product_code`, `price`, `quantity`, `size`, `color`, `material`, `date_at`, `category_id`, `type_id`) VALUES ('10', 'DATEJUST 39','M039172', '413290000', '3', '39 mm', 'vàng vàng và kim cương','Oystersteel', '2023-08-31',  '1', '1');
+--
+-- Table structure for table `order_details`
+--
 
+DROP TABLE IF EXISTS `order_details`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order_details` (
+  `order_details_id` int NOT NULL AUTO_INCREMENT,
+  `quantity_order_detail` int NOT NULL,
+  `order_id` int DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
+  PRIMARY KEY (`order_details_id`),
+  KEY `FKjyu2qbqt8gnvno9oe9j2s2ldk` (`order_id`),
+  KEY `FKinivj2k1370kw224lavkm3rqm` (`product_id`),
+  CONSTRAINT `FKinivj2k1370kw224lavkm3rqm` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
+  CONSTRAINT `FKjyu2qbqt8gnvno9oe9j2s2ldk` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-INSERT INTO `rolex`.`role` (`role_id`, `role_name`) VALUES ('1', 'ROLE_ADMIN');
-INSERT INTO `rolex`.`role` (`role_id`, `role_name`) VALUES ('2', 'ROLE_USER');
+--
+-- Dumping data for table `order_details`
+--
 
-INSERT INTO `rolex`.`account` (`account_id`, `email`, `passwords`, `role_id`) VALUES ('1', 'tuankiett2309@gmail.com', '123', '1');
-INSERT INTO `rolex`.`account` (`account_id`, `email`, `passwords`, `role_id`) VALUES ('2', 'ngocnga@gmail.com', '123', '2');
+LOCK TABLES `order_details` WRITE;
+/*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
+INSERT INTO `order_details` VALUES (38,1,31,9),(39,1,31,16),(40,1,32,51),(41,1,33,18),(42,2,33,3),(44,1,34,72),(45,1,35,55),(46,1,36,49),(47,1,37,41),(48,1,38,3),(49,3,39,5),(50,3,40,5),(51,1,41,10),(52,1,41,16),(53,1,42,20),(54,1,42,18);
+/*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
+UNLOCK TABLES;
 
-INSERT INTO `rolex`.`user` (`id_user`, `name_user`, `phone_number`, `email`, `address`, `date_of_birth`, `gender`, `account_id`) VALUES ('1', 'Nguyễn Tuấn Kiệt', '0965702079', 'tuankiett2309@gmail.com', 'Da Nang', '1996-07-09', 0, '1');
-INSERT INTO `rolex`.`user` (`id_user`, `name_user`, `phone_number`, `email`, `address`, `date_of_birth`, `gender`, `account_id`) VALUES ('2','Ngọc Nga', '0965922279', 'ngocnga@gmail.com', 'Da Nang', '1999-03-31',1, '2');
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orders` (
+  `order_id` int NOT NULL AUTO_INCREMENT,
+  `address_recipient` varchar(255) DEFAULT NULL,
+  `date_order` datetime DEFAULT NULL,
+  `name_recipient` varchar(255) DEFAULT NULL,
+  `note` varchar(255) DEFAULT NULL,
+  `order_status` bit(1) NOT NULL,
+  `phone_recipient` varchar(255) DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  PRIMARY KEY (`order_id`),
+  KEY `FKel9kyl84ego2otj2accfd8mr7` (`user_id`),
+  CONSTRAINT `FKel9kyl84ego2otj2accfd8mr7` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (31,'Da Nang','2023-09-22 12:04:57','Ngọc Nga','zxczxc',_binary '\0','0965922279',2),(32,'Da Nang','2023-09-22 12:05:42','Ngọc Nga',' ',_binary '\0','0965922279',2),(33,'101 Ung Văn Khiêm','2023-09-22 12:09:09','Nguyễn Tuấn Kiệt','Giao giờ hành chính',_binary '\0','0965702079',4),(34,'Ngũ Hành Sơn - Đà Nẵng','2023-09-22 08:36:30','Văn Hưng','Tặng Nam',_binary '\0','0799318671',4),(35,'Ngũ Hành Sơn - Đà Nẵng','2023-09-22 08:39:00','Văn Hưng',' ',_binary '\0','0799318671',4),(36,'Ngũ Hành Sơn - Đà Nẵng','2023-09-22 08:39:56','Văn Hưng',' ',_binary '\0','0799318671',4),(37,'Ngũ Hành Sơn - Đà Nẵng','2023-09-22 08:40:17','Văn Hưng',' ',_binary '\0','0799318671',4),(38,'Duy Xuyên - Quảng Nam','2023-09-22 08:47:52','Văn Thái',' ',_binary '\0','0945162313',5),(39,'Duy Xuyên - Quảng Nam','2023-09-22 11:55:01','Văn Thái',' ',_binary '\0','0945162313',5),(40,'Ngũ Hành Sơn - Đà Nẵng','2023-09-22 11:55:02','Văn Hưng',' ',_binary '\0','0799318671',4),(41,'Duy Xuyên - Quảng Nam','2023-09-22 12:00:49','Văn Thái',' ',_binary '\0','0945162313',5),(42,'Duy Xuyên - Quảng Nam','2023-09-22 03:21:09','Văn Thái',' ',_binary '\0','0945162313',5);
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product`
+--
+
+DROP TABLE IF EXISTS `product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product` (
+  `product_id` int NOT NULL AUTO_INCREMENT,
+  `date_at` date DEFAULT NULL,
+  `designs` varchar(255) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `material` varchar(255) DEFAULT NULL,
+  `price` double NOT NULL,
+  `product_code` varchar(255) DEFAULT NULL,
+  `product_name` varchar(255) DEFAULT NULL,
+  `product_status` bit(1) NOT NULL DEFAULT b'0',
+  `quantity` int NOT NULL,
+  `size` int NOT NULL,
+  `category_id` int DEFAULT NULL,
+  `type_id` int DEFAULT NULL,
+  PRIMARY KEY (`product_id`),
+  KEY `FK1mtsbur82frn64de7balymq9s` (`category_id`),
+  KEY `FKmr65ivtx695g1785hq6yc80bt` (`type_id`),
+  CONSTRAINT `FK1mtsbur82frn64de7balymq9s` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`),
+  CONSTRAINT `FKmr65ivtx695g1785hq6yc80bt` FOREIGN KEY (`type_id`) REFERENCES `type_product` (`type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product`
+--
+
+LOCK TABLES `product` WRITE;
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (1,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126234-0051_collection_upright_landscape.png','vàng trắng',22197750,'D10321','DATEJUST 36',_binary '\0',3,36,1,2),(2,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126231-0044_collection_upright_landscape.png','vàng Everose',31386800,'D10312','DATEJUST 36',_binary '\0',3,36,1,2),(3,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m278274-0035_collection_upright_landscape.png','vàng trắng',25592700,'M278274','DATEJUST 31',_binary '\0',0,31,1,2),(4,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m278240-0005_collection_upright_landscape.png','thép Oystersteel và trắng',17497050,'M278240','DATEJUST 31',_binary '\0',3,31,1,2),(5,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126334-0023_collection_upright_landscape.png','vàng trắng',34578700,'M731331','DATEJUST 38',_binary '\0',0,38,1,1),(6,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126334-0006_collection_upright_landscape.png','vàng vàng',23945000,'M126303','DATEJUST 41',_binary '\0',3,41,1,1),(7,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126283rbr-0012_collection_upright_landscape.png','vàng và kim cương',41329000,'M791231','DATEJUST 40',_binary '\0',3,40,1,1),(8,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126284rbr-0011_collection_upright_landscape.png','vàng và kim cương',49822000,'M039172','DATEJUST 39',_binary '\0',3,39,1,1),(9,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126506-0001_collection_upright_landscape.png','bạch kim',49474150,'m126503','COSMOGRAPH DAYTONA',_binary '\0',2,40,2,1),(10,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126503-0004_collection_upright_landscape.png','vàng kim',48573900,'m126504','COSMOGRAPH DAYTONA',_binary '\0',2,40,2,1),(11,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126505-0001_collection_upright_landscape.png','vàng Everose',105765750,'m126505','COSMOGRAPH DAYTONA',_binary '\0',3,40,2,1),(12,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126506-0002_collection_upright_landscape.png','bạch kim',77497050,'m126506','COSMOGRAPH DAYTONA',_binary '\0',3,40,2,1),(13,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126505-0002_collection_upright_landscape.png','vàng Everose',110727600,'m126509','COSMOGRAPH DAYTONA',_binary '\0',3,40,2,1),(14,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126519ln-0006_collection_upright_landscape.png','vàng trắng',79911900,'m126515ln','COSMOGRAPH DAYTONA',_binary '\0',3,41,2,1),(15,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126508-0003_collection_upright_landscape.png','vàng kim',103415400,'M791231','COSMOGRAPH DAYTONA',_binary '\0',3,40,2,1),(16,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126518ln-0012_collection_upright_landscape.png','vàng kim',76255800,'m126518ln','COSMOGRAPH DAYTONA',_binary '\0',1,40,2,1),(17,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126515ln-0006_collection_upright_landscape.png','vàng Everose',79911900,'m126519ln','COSMOGRAPH DAYTONA',_binary '\0',3,40,2,1),(18,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m228236-0012_collection_upright_landscape.png','thép Oystersteel và bạch kim',59474150,'m228236','DAY-DATE 40',_binary '\0',1,40,3,1),(19,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m128348rbr-0049_collection_upright_landscape.png','vàng và kim cương',78573900,'m128348rbr','DAY-DATE 36',_binary '\0',3,36,3,2),(20,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m128345rbr-0068_collection_upright_landscape.png','vàng Everose và kim cương',55765750,'m128345rbr','DAY-DATE 36',_binary '\0',2,36,3,2),(21,'2023-08-31','Oyster ','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m128349rbr-0031_collection_upright_landscape.png','vàng trắng và kim cương',87497050,'m128349rbr','DAY-DATE 36',_binary '\0',3,36,3,2),(22,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m128239-0005_collection_upright_landscape.png','vàng trắng',91236300,'m128239','DAY-DATE 36',_binary '\0',3,36,3,2),(23,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m228348rbr-0002_collection_upright_landscape.png','vàng kim và kim cương',94536300,'m228348rbr','DAY-DATE 40',_binary '\0',3,40,3,1),(24,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m228239-0007_collection_upright_landscape.png','vàng trắng',103415400,'m228239','DAY-DATE 40',_binary '\0',3,40,3,1),(25,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m228349rbr-0003_collection_upright_landscape.png','vàng và kim cương',76255800,'m126518ln','DAY-DATE 40',_binary '\0',3,40,3,1),(26,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m228238-0061_collection_upright_landscape.png','vàng kim',99911900,'m228349rbr','DAY-DATE 40',_binary '\0',3,40,3,1),(27,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m128349rbr-0008_collection_upright_landscape.png','vàng trắng và kim cương',66255800,'m126518ln','DAY-DATE 36',_binary '\0',3,36,3,2),(28,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m228238-0059_collection_upright_landscape.png','vàng trắng',122479300,'m228238','DAY-DATE 40',_binary '\0',3,40,3,1),(29,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126713grnr-0001_collection_upright_landscape.png','thép Oystersteel và vàng kim',41000550,'m126713grnr','GMT-MASTER II',_binary '\0',3,40,4,1),(30,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126718grnr-0001_collection_upright_landscape.png','thép Oystersteel và vàng kim',96886650,'m128349rbr','GMT-MASTER II',_binary '\0',3,40,4,1),(31,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126719blro-0003_collection_upright_landscape.png','vàng trắng',101065050,'m126719blro','GMT-MASTER II',_binary '\0',3,40,4,1),(32,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126720vtnr-0001_collection_upright_landscape.png','vàng trắng',27943050,'m126720vtnr','GMT-MASTER II',_binary '\0',3,40,4,1),(33,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126719blro-0002_collection_upright_landscape.png','vàng trắng',106810350,'m126719blri','GMT-MASTER II',_binary '\0',3,40,4,1),(34,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126711chnr-0002_collection_upright_landscape.png','vàng Everose',40217100,'m126711chnr','GMT-MASTER II',_binary '\0',3,40,4,1),(35,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126715chnr-0001_collection_upright_landscape.png','vàng Everose',101065050,'m126715chnr','GMT-MASTER II',_binary '\0',3,40,4,1),(36,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126710blro-0001_collection_upright_landscape.png','vàng trắng ',27159600,'m126518ln','GMT-MASTER II',_binary '\0',3,40,4,1),(37,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126710blnr-0003_collection_upright_landscape.png','vàng trắng',26637300,'m126710blnr','GMT-MASTER II',_binary '\0',3,40,4,1),(38,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m124300-0001_collection_upright_landscape.png','Oystersteel',15930150,'m124300','OYSTER PERPETUAL 41',_binary '\0',3,41,5,1),(39,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m124300-0008_collection_upright_landscape.png','Oystersteel',15930150,'m128349rbr','OYSTER PERPETUAL 41',_binary '\0',3,41,5,1),(40,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126000-0009_collection_upright_landscape.png','Oystersteel',15146700,'m126000x','OYSTER PERPETUAL 36',_binary '\0',3,36,5,2),(41,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m276200-0001_collection_upright_landscape.png','thép Oystersteel',13840950,'m276200','OYSTER PERPETUAL 28',_binary '\0',2,28,5,2),(42,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m277200-0001_collection_upright_landscape.png','Oystersteel',14102100,'m277200','OYSTER PERPETUAL 31',_binary '\0',3,31,5,2),(43,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m124200-0001_collection_upright_landscape.png','thép Oystersteel',14363250,'m124200','OYSTER PERPETUAL 34',_binary '\0',3,34,5,2),(44,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m124300-0002_collection_upright_landscape.png','Oystersteel',15930150,'m124300','OYSTER PERPETUAL 41',_binary '\0',3,41,5,1),(45,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m124200-0003_collection_upright_landscape.png','Oystersteel',14363250,'m124200','OYSTER PERPETUAL 34',_binary '\0',3,34,5,2),(46,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m124300-0005_collection_upright_landscape.png','Oystersteel',15930150,'m124306','OYSTER PERPETUAL 31',_binary '\0',3,31,5,2),(47,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m124200-0002_collection_upright_landscape.png','thép Oystersteel',14363250,'m124200','OYSTER PERPETUAL 34',_binary '\0',3,34,5,2),(48,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m276200-0003_collection_upright_landscape.png','thép Oystersteel',13840950,'m124250','OYSTER PERPETUAL 28',_binary '\0',3,28,5,2),(49,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m276200-0002_collection_upright_landscape.png','Oystersteel',13840950,'m276200','OYSTER PERPETUAL 28',_binary '\0',2,28,5,2),(50,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m124060-0001_collection_upright_landscape.png','Oystersteel trắng ',22720050,'m124060','SUBMARINER',_binary '\0',3,41,6,1),(51,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126613lb-0002_collection_upright_landscape.png','vàng vàng',38911350,'m126613lb','SUBMARINER DATE',_binary '\0',2,41,6,1),(52,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126610ln-0001_collection_upright_landscape.png','Oystersteel',25592700,'m126610ln','SUBMARINER DATE',_binary '\0',3,41,6,1),(53,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126618lb-0002_collection_upright_landscape.png','vàng vàng',97147800,'m126618lb','SUBMARINER DATE',_binary '\0',3,41,6,1),(54,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126610lv-0002_collection_upright_landscape.png','Oystersteel',26898450,'m126610lv','SUBMARINER DATE',_binary '\0',3,40,6,1),(55,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126618ln-0002_collection_upright_landscape.png','vàng vàng',9714780,'m126618ln','SUBMARINER DATE',_binary '\0',2,41,6,1),(56,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126619lb-0003_collection_upright_landscape.png','vàng trắng',10446000,'m126619lb','SUBMARINER DATE',_binary '\0',3,41,6,1),(57,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126613ln-0002_collection_upright_landscape.png','vàng vàng',38911350,'m126613ln	','SUBMARINER DATE',_binary '\0',3,41,6,1),(58,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126603-0001_collection_upright_landscape.png','vàng vàng',44917800,'m126603','SEA-DWELLER',_binary '\0',3,43,7,1),(59,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m136660-0003_collection_upright_landscape.png','Oystersteel',36038700,'m136660','ROLEX DEEPSEA',_binary '\0',3,44,7,1),(60,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126600-0002_collection_upright_landscape.png','Oystersteel',32904900,'m126600','SEA-DWELLER',_binary '\0',3,43,7,1),(61,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m136660-0004_collection_upright_landscape.png','Oystersteel',38911350,'m136660','ROLEX DEEPSEA',_binary '\0',3,44,7,1),(62,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m52508-0006_collection_upright_landscape.png','vàng kim',54841500,'m52508','1908',_binary '\0',3,39,8,1),(63,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m52508-0002_collection_upright_landscape.png','vàng kim',54841500,'m52509','1908',_binary '\0',3,39,8,1),(64,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m52509-0002_collection_upright_landscape.png','vàng trắng',57975300,'m52510','1908',_binary '\0',3,39,8,1),(65,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m52509-0006_collection_upright_landscape.png','vàng trắng',57975300,'m52511','1908',_binary '\0',3,39,8,1),(66,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m336239-0002_collection_upright_landscape.png','vàng trắng',10628800,'m336239','SKY-DWELLER',_binary '\0',3,42,9,1),(67,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m336934-0004_collection_upright_landscape.png','vàng trắng',39433650,'m336934','SKY-DWELLER',_binary '\0',3,42,9,1),(68,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m336933-0001_collection_upright_landscape.png','vàng vàng',48051600,'m336933','SKY-DWELLER',_binary '\0',3,42,9,1),(69,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m336235-0003_collection_upright_landscape.png','vàng Everose',16288050,'m336235','SKY-DWELLER',_binary '\0',3,42,9,1),(70,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m336935-0001_collection_upright_landscape.png','vàng Everose',19810350,'m336935','SKY-DWELLER',_binary '\0',3,42,9,1),(71,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m336238-0002_collection_upright_landscape.png','vàng vàng',10237800,'m336238','SKY-DWELLER',_binary '\0',0,42,9,1),(72,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m336938-0003_collection_upright_landscape.png','thép Oystersteel và vàng',11606700,'m336938','SKY-DWELLER',_binary '\0',2,42,9,1),(73,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m336933-0004_collection_upright_landscape.png','vàng vàng ',49618500,'m336933','SKY-DWELLER',_binary '\0',3,42,9,1),(74,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m336934-0001_collection_upright_landscape.png','vàng trắng',38911350,'m336934','SKY-DWELLER',_binary '\0',3,42,9,1),(75,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m226627-0001_collection_upright_landscape.png','titanium RLX',34994100,'m226627','YACHT-MASTER 42',_binary '\0',3,42,10,1),(76,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m116688-0002_collection_upright_landscape.png','vàng vàng',10837725,'m116688','YACHT-MASTER II',_binary '\0',3,44,10,1),(77,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m268622-0002_collection_upright_landscape.png','thép Oystersteel và bạch kim',28726500,'m336933','YACHT-MASTER 37',_binary '\0',3,37,10,1),(78,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m268621-0003_collection_upright_landscape.png','vàng Everose',35777550,'m268621','YACHT-MASTER 37',_binary '\0',3,37,10,1),(79,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m268655-0019_collection_upright_landscape.png','vàng Everose',13415400,'m268655','YACHT-MASTER 3',_binary '\0',3,37,10,1),(80,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126622-0001_collection_upright_landscape.png','Oystersteel và bạch kim',30554500,'m126622','YACHT-MASTER 40',_binary '\0',3,40,10,1),(81,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126621-0001_collection_upright_landscape.png','vàng Everose',39433650,'m126621','YACHT-MASTER 40',_binary '\0',3,40,10,1),(82,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m226658-0001_collection_upright_landscape.png','vàng vàng',22599700,'m226658','YACHT-MASTER 42',_binary '\0',3,42,10,1),(83,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m126655-0002_collection_upright_landscape.png','vàng Everose',21816250,'m336934','YACHT-MASTER 40',_binary '\0',3,40,10,1),(84,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m226659-0004_collection_upright_landscape.png','thép Oystersteel và vàng',32523400,'m226659','YACHT-MASTER 42',_binary '\0',3,42,10,1),(85,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m116681-0002_collection_upright_landscape.png','vàng Everose',33198300,'m116681','YACHT-MASTER II',_binary '\0',3,44,10,1),(86,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m116680-0002_collection_upright_landscape.png','Oystersteel',46484700,'m116680','YACHT-MASTER II',_binary '\0',3,44,10,1),(87,'2023-08-31','Oyster','https://rolex.dafc.com.vn/wp-content/uploads/2023/05/m226659-0002_collection_upright_landscape.png','vàng trắng',15994650,'m226659','YACHT-MASTER 42',_binary '\0',3,42,10,1);
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `role` (
+  `id_role` int NOT NULL AUTO_INCREMENT,
+  `name_role` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_role`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role`
+--
+
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,'ROLE_ADMIN'),(2,'ROLE_USER');
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `shopping_cart`
+--
+
+DROP TABLE IF EXISTS `shopping_cart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `shopping_cart` (
+  `id_shopping_cart` int NOT NULL AUTO_INCREMENT,
+  `quantity` int NOT NULL,
+  `product_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  PRIMARY KEY (`id_shopping_cart`),
+  KEY `FKerqg5bwr2tdlwabwdn7r4n2xo` (`product_id`),
+  KEY `FK254qp5akhuaaj9n5co4jww3fk` (`user_id`),
+  CONSTRAINT `FK254qp5akhuaaj9n5co4jww3fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+  CONSTRAINT `FKerqg5bwr2tdlwabwdn7r4n2xo` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shopping_cart`
+--
+
+LOCK TABLES `shopping_cart` WRITE;
+/*!40000 ALTER TABLE `shopping_cart` DISABLE KEYS */;
+INSERT INTO `shopping_cart` VALUES (84,3,5,4),(85,1,6,4),(92,1,10,5);
+/*!40000 ALTER TABLE `shopping_cart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `type_product`
+--
+
+DROP TABLE IF EXISTS `type_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `type_product` (
+  `type_id` int NOT NULL AUTO_INCREMENT,
+  `type_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `type_product`
+--
+
+LOCK TABLES `type_product` WRITE;
+/*!40000 ALTER TABLE `type_product` DISABLE KEYS */;
+INSERT INTO `type_product` VALUES (1,'Nam'),(2,'Nữ');
+/*!40000 ALTER TABLE `type_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `address` varchar(255) DEFAULT NULL,
+  `date_of_birth` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `gender` bit(1) NOT NULL,
+  `name_user` varchar(255) DEFAULT NULL,
+  `phone_number` varchar(255) DEFAULT NULL,
+  `id_account` int DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  KEY `FKol9lgnwinqxhgm253ffpxrj6k` (`id_account`),
+  CONSTRAINT `FKol9lgnwinqxhgm253ffpxrj6k` FOREIGN KEY (`id_account`) REFERENCES `account` (`id_account`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'Pleiku - Gia Lai','1996-07-09','tuankiett2309@gmail.com',_binary '\0','Nguyễn Tuấn Kiệt','0965702079',1),(2,'Phù Đổng - Gia Lai','1999-03-31','ngocnga@gmail.com',_binary '','Ngọc Nga','0967314251',2),(3,'Thanh Chương - Nghệ An','1999-03-31','nam@gmail.com',_binary '','Công Nam','0861237511',3),(4,'Ngũ Hành Sơn - Đà Nẵng','1999-03-31','hung@gmail.com',_binary '','Văn Hưng','0799318671',4),(5,'Duy Xuyên - Quảng Nam','1999-03-31','thai@gmail.com',_binary '','Văn Thái','0945162313',5);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-10-06 14:05:12

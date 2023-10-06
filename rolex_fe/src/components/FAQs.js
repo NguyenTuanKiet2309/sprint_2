@@ -13,7 +13,7 @@ export default function FAQs() {
         <div className="col-lg-12">
           <div className="breadcrumb-text product-more">
             <a href="./home.html">
-              <i className="fa fa-home" /> Trang chủ
+              Trang chủ
             </a>
             <span>
              Câu hỏi thường gặp

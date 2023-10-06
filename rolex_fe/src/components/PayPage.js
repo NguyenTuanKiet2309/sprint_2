@@ -39,7 +39,6 @@ export default function PayPage() {
     try {
       const data = await getInfoUser(email);
       setUser(data);
-      console.log(data);
     } catch {
       Swal.fire("Đăng nhập để lấy thông tin");
     }
@@ -297,7 +296,7 @@ export default function PayPage() {
           <div className="col-lg-12">
             <div className="breadcrumb-text product-more">
               <a href="./home.html">
-                <i className="fa fa-home" /> Trang chủ
+               Trang chủ
               </a>
               <a>
                 <span>Giỏ hàng</span>

@@ -75,6 +75,7 @@ export default function HistoryOrder() {
   };
 
   useEffect(() => {
+    window.scrollTo(0,0);
     getHistoryOrder();
   }, [location, page]);
   return (
@@ -84,7 +85,7 @@ export default function HistoryOrder() {
           <div className="col-lg-12">
             <div className="breadcrumb-text product-more">
               <a href="./home.html">
-                <i className="fa fa-home" /> Trang chủ
+               Trang chủ
               </a>
               <a>
                 <span>Người dùng</span>
@@ -115,7 +116,8 @@ export default function HistoryOrder() {
                       <th>STT</th>
                       <th>Người nhận</th>
                       <th>Ngày đặt hàng</th>
-                      <th>Địa chỉ</th>
+                      <th>Địa chỉ nhận hàng</th>
+                      <th>Trạng thái</th>
                       <th>Số điện thoại</th>
                       <th>Chi tiết</th>
                     </tr>
@@ -131,6 +133,7 @@ export default function HistoryOrder() {
                               {moment(h.dateOrder).format("DD/MM/YYYY HH:mm")}
                             </td>
                             <td>{h.address_recipient}</td>
+                            <td>{h.orderStatus ? 'Đã giao hàng' : 'Chưa giao hàng'}</td>
                             <td>{h.phone_recipient}</td>
                             <td>
                               <i

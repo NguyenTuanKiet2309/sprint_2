@@ -38,6 +38,7 @@ export default function HomePage() {
   }, []);
   useEffect(() => {
     getAllCategory();
+    document.title = "ROLEX WORLD | Trang chủ"
     window.scrollTo(0, 0);
   }, []);
 
@@ -157,8 +158,8 @@ export default function HomePage() {
                 backgroundImage: `url(${categorys.images})`,
               };
               return (
-                <div className="brand_item-box">
-                  <div className="brand_img-box" style={backgroundImageStyle}>
+                <div className="brand_item-boxhome">
+                  <div className="brand_img-boxhome" style={backgroundImageStyle}>
                     <Link
                       to={`/rolex-world/products/list?page=${page}&&categoryName=${categorys.categoryName}&&typeName=${typeName}&&material=${material}&&sizePage=${size}`}
                       style={{ color: "#fff" }}
@@ -166,8 +167,8 @@ export default function HomePage() {
                       Xem Thêm
                     </Link>
                   </div>
-                  <div className="brand_detail-box-home">
-                    <h6 className="name-brand">{categorys.categoryName}</h6>
+                  <div className="brand_detail-box-home" >
+                    <h6 className="name-brand" style={{paddingTop:"10px",fontWeight:"bold",textTransform:"uppercase"}}>{categorys.categoryName}</h6>
                   </div>
                 </div>
               );

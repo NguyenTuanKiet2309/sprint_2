@@ -63,7 +63,7 @@ export default function Header() {
       setNumProduct(0);
     }
   };
-  // Kiểm tra trạng thái đăng nhập khi thành phần được render
+ 
   useEffect(() => {
     checkLoggedIn();
     checkPaid();
@@ -72,18 +72,18 @@ export default function Header() {
   }, [location, numProduct]);
   return (
     <>
-      <header className="header_section sticky-top">
-        <div className="container">
-          <nav className="navbar navbar-expand-lg custom_nav-container pt-3">
+      <header className="header_section sticky-top" style={{height:"100px"}}>
+        <div className="container-fluid">
+          <nav className="navbar navbar-expand-lg custom_nav-container pt-3" style={{height:"100px"}}>
             <NavLink
               className="navbar-brand"
               to="/rolex-world"
-              style={{ position: "relative", right: "70px" }}
+            
             >
               <img
                 src="../Bc (7).png"
                 alt="Rolex world"
-                style={{ height: "70px", width: "70px" }}
+                style={{ height: "100%", width: "100px",paddingLeft:"30px" }}
               ></img>
             </NavLink>
             <button
@@ -100,9 +100,9 @@ export default function Header() {
             <div
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
-              style={{ position: "relative", right: "80px" }}
+            
             >
-              <div className="d-flex ml-auto flex-column flex-lg-row align-items-center nav-edit">
+              <div className="d-flex ml-auto flex-column flex-lg-row align-items-center">
                 <ul className="navbar-nav  ">
                   <li className="nav-item active">
                     <NavLink to="/rolex-world" className="nav-link">
@@ -114,10 +114,10 @@ export default function Header() {
                   <li className="nav-item">
                     <Link
                       className="nav-link"
-                      // to={`/rolex-world/products/typeProduct?page=0&&typeId=2`}
+                      to={`/rolex-world/about-us`}
                     >
                       {" "}
-                      Về Chúng Tôi{" "}
+                      Về Rolex{" "}
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -139,7 +139,7 @@ export default function Header() {
             <div className="d-flex ml-auto flex-column flex-lg-row align-items-center">
               <ul
                 className="navbar-nav  "
-                style={{ position: "relative", left: "130px" }}
+               
               >
                 <li className="nav-item logined">
                   {isLoggedIn ? (

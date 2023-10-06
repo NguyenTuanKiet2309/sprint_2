@@ -30,7 +30,7 @@ export default function ProfilePage() {
             <div className="col-lg-12">
               <div className="breadcrumb-text product-more">
                 <a href="./home.html">
-                  <i className="fa fa-home" /> Trang chủ
+                 Trang chủ
                 </a>
                 <a>
                   <span>Người dùng</span>

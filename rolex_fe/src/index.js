@@ -20,6 +20,7 @@ import ReturnPage from "./components/ReturnPage";
 import PayProductPage from "./components/PayProductPage";
 import HistoryOrder from "./components/HistoryOrder";
 import ProfilePage from "./components/ProfilePage";
+import AboutUs from "./components/AboutUs";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -65,6 +66,7 @@ root.render(
           <Route path="/return" element={<ReturnPage />}></Route>
           <Route path="/rolex-world/history-order" element={<HistoryOrder />}></Route>
           <Route path="/rolex-world/user/profile" element={<ProfilePage/>}></Route>
+          <Route path="rolex-world/about-us" element={<AboutUs/>}></Route>
         </Routes>
         <Footer />
       </Provider>

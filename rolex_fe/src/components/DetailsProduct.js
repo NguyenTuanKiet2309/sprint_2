@@ -153,7 +153,7 @@ export default function DetailsProduct() {
         <div className="col-lg-12">
           <div className="breadcrumb-text product-more">
             <a href="./home.html">
-              <i className="fa fa-home" /> Trang chủ
+               Trang chủ
             </a>
             <span>
               Sản phẩm {product.productName} {product.productCode}
